@@ -1,54 +1,50 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Cybernetic Sabotage</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<head>
-  <title>Cybernetic Sabotage</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
+  <body>
+    <div class="main-panel">
+      <h2>Section 1</h2>
+      <p>This is the content of section 1.</p>
+    </div>
 
-<body>
+    <div class="side-panel">
+      <h2>Cybernetic Sabotage</h2>
+      <button>Button 1</button><br />
+      <button>Button 2</button><br />
+      <button>Button 3</button><br />
 
-  <div class="main-panel">
-    <h2>Section 1</h2>
-    <p>This is the content of section 1.</p>
-  </div>
-
-  <div class="side-panel">
-    <h2>Cybernetic Sabotage</h2>
-    <button>Button 1</button><br />
-    <button>Button 2</button><br />
-    <button>Button 3</button><br />
-
-    <table>
-      <tr>
-        <th colspan="2">Database Schema</th>
-      </tr>
-      <tr>
-        <td>Employees</td>
-        <td>EmployeeID, Name, Job Role, Division, Last Login Time</td>
-      </tr>
-      <tr>
-        <td>Robots</td>
-        <td>RobotID, Model, Manufacturing Date, Status, Update Date, Last Updated By </td>
-      </tr>
-      <tr>
-        <td>Logs</td>
-        <td>LogID, EmployeeID, Action Description, Timestamp, Robot ID</td>
-      </tr>
-      <tr>
-        <td>Incidents</td>
-        <td>IncidentID, Description, Timestamp, RobotID, Reported By
-        </td>
-      </tr>
-      <tr>
-        <td>Access_Codes</td>
-        <td>Access Code, EmployeeID, Access Level, Last Access
-        </td>
-      </tr>
-    </table>
-
-  </div>
-
-</body>
-
+      <table>
+        <tr>
+          <th colspan="2">Database Schema</th>
+        </tr>
+        <tr>
+          <td>Employees</td>
+          <td>EmployeeID, Name, Job Role, Division, Last Login Time</td>
+        </tr>
+        <tr>
+          <td>Robots</td>
+          <td>
+            RobotID, Model, Manufacturing Date, Status, Update Date, Last
+            Updated By
+          </td>
+        </tr>
+        <tr>
+          <td>Logs</td>
+          <td>LogID, EmployeeID, Action Description, Timestamp, Robot ID</td>
+        </tr>
+        <tr>
+          <td>Incidents</td>
+          <td>IncidentID, Description, Timestamp, RobotID, Reported By</td>
+        </tr>
+        <tr>
+          <td>Access_Codes</td>
+          <td>Access Code, EmployeeID, Access Level, Last Access</td>
+        </tr>
+      </table>
+    </div>
+  </body>
 </html>
