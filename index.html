@@ -1,158 +1,50 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Cybernetic Sabotage</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<head>
-  <title>Cybernetic Sabotage</title>
-  <style>
-    :root {
-      --main-color: lime;
-    }
+  <body>
+    <div class="main-panel">
+      <h2>Section 1</h2>
+      <p>This is the content of section 1.</p>
+    </div>
 
-    body {
-      background-color: black;
-      color: var(--main-color);
-      font-family: Arial, sans-serif;
-      height: 100%;
-    }
+    <div class="side-panel">
+      <h2>Cybernetic Sabotage</h2>
+      <button>Button 1</button><br />
+      <button>Button 2</button><br />
+      <button>Button 3</button><br />
 
-    .main-panel {
-      display: inline-block;
-      width: 60%;
-      height: 90vh;
-      padding: 10px;
-      border: 2px solid var(--main-color);
-      border-radius: 10px;
-      margin: 0 1.5%;
-      position: relative;
-      vertical-align: top;
-    }
-
-    .main-panel:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('images/mainScreen.jpg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.15;
-      z-index: -1;
-    }
-
-    .side-panel {
-      display: inline-block;
-      width: 29%;
-      height: 90vh;
-      padding: 10px;
-      background-color: black;
-      border: 2px solid var(--main-color);
-      border-radius: 10px;
-      text-align: center;
-    }
-
-    .side-panel button {
-      display: block;
-      width: 100%;
-      padding: 10px 20px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 5px;
-      background-color: #000000;
-      color: var(--main-color);
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .side-panel button:hover {
-      background-color: #1a1a1a;
-    }
-
-    table {
-      border-collapse: collapse;
-      border: 1px solid var(--main-color);
-      margin: auto;
-    }
-
-    th {
-      text-align: center;
-      border: none;
-      font-weight: bolder;
-    }
-
-    td {
-      text-align: left;
-      border: none;
-      border-bottom: 1px solid var(--main-color);
-    }
-
-    td:nth-child(1) {
-      width: 90px;
-      text-align: center;
-    }
-
-    td:nth-child(2) {
-      width: 400px;
-      border-left: 1px solid var(--main-color);
-    }
-
-    tr:first-child>th {
-      border-bottom: 1px solid var(--main-color);
-    }
-  </style>
-</head>
-
-<body>
-
-
-  <div class="main-panel">
-    <h2>Section 1</h2>
-    <p>This is the content of section 1.</p>
-  </div>
-
-  <div class="side-panel">
-    <h2>Cybernetic Sabotage</h2>
-    <button>Button 1</button><br />
-    <button>Button 2</button><br />
-    <button>Button 3</button><br />
-
-    <table>
-      <tr>
-        <th colspan="2">Database Schema</th>
-      </tr>
-      <tr>
-        <td>Employees</td>
-        <td>EmployeeID, Name, Job Role, Division, Last Login Time</td>
-      </tr>
-      <tr>
-        <td>Robots</td>
-        <td>RobotID, Model, Manufacturing Date, Status, Update Date, Last Updated By </td>
-      </tr>
-      <tr>
-        <td>Logs</td>
-        <td>LogID, EmployeeID, Action Description, Timestamp, Robot ID</td>
-      </tr>
-      <tr>
-        <td>Incidents</td>
-        <td>IncidentID, Description, Timestamp, RobotID, Reported By
-        </td>
-      </tr>
-      <tr>
-        <td>Access_Codes</td>
-        <td>Access Code, EmployeeID, Access Level, Last Access
-        </td>
-      </tr>
-    </table>
-
-  </div>
-
-  <!-- <div class="section">
-    <h2>Section 3</h2>
-    <p>This is the content of section 3.</p>
-  </div> -->
-
-</body>
-
+      <table>
+        <tr>
+          <th colspan="2">Database Schema</th>
+        </tr>
+        <tr>
+          <td>Employees</td>
+          <td>EmployeeID, Name, Job Role, Division, Last Login Time</td>
+        </tr>
+        <tr>
+          <td>Robots</td>
+          <td>
+            RobotID, Model, Manufacturing Date, Status, Update Date, Last
+            Updated By
+          </td>
+        </tr>
+        <tr>
+          <td>Logs</td>
+          <td>LogID, EmployeeID, Action Description, Timestamp, Robot ID</td>
+        </tr>
+        <tr>
+          <td>Incidents</td>
+          <td>IncidentID, Description, Timestamp, RobotID, Reported By</td>
+        </tr>
+        <tr>
+          <td>Access_Codes</td>
+          <td>Access Code, EmployeeID, Access Level, Last Access</td>
+        </tr>
+      </table>
+    </div>
+  </body>
 </html>
