@@ -12,14 +12,14 @@ body {
 
 .main-panel {
   display: inline-block;
-  width: 60%;
+  width: 62.8%;
   height: 90vh;
   padding: 10px;
   border: 2px solid var(--main-color);
   border-radius: 10px;
-  margin: 0 1.5%;
   position: relative;
   vertical-align: top;
+  margin-right: 10px;
 }
 
 .main-panel::before {
@@ -38,7 +38,7 @@ body {
 
 .side-panel {
   display: inline-block;
-  width: 29%;
+  width: 32%;
   height: 90vh;
   padding: 10px;
   background-color: black;
