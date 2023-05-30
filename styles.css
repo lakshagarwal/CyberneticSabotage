@@ -73,6 +73,11 @@ body {
   cursor: pointer;
 }
 
+.button-container button {
+  flex-grow: 1;
+  margin: 8px 5px;
+}
+
 .side-panel button:hover {
   background-color: #1a1a1a;
 }
@@ -115,15 +120,9 @@ tr:first-child > th {
   margin-bottom: 10px;
 }
 
-.button-container button {
-  flex-grow: 1;
-  margin: 8px 5px;
-}
-
 .input-box,
 .inner-box-side {
   border: 1px solid var(--main-color);
-  padding: 0px;
   margin-top: auto;
 }
 
