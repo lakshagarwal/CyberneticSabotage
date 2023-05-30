@@ -6,45 +6,70 @@
   </head>
 
   <body>
-    <div class="main-panel">
-      <h2>Section 1</h2>
-      <p>This is the content of section 1.</p>
-    </div>
+    <div class="container">
+      <div class="main-panel">
+        <div class="main-panel-container">
+          <div class="main-panel-content">
+            <h2>Section 1</h2>
+            <p>This is the content of section 1.</p>
+          </div>
 
-    <div class="side-panel">
-      <h2>Cybernetic Sabotage</h2>
-      <button>Button 1</button><br />
-      <button>Button 2</button><br />
-      <button>Button 3</button><br />
+          <div class="input-box">
+            <!-- Content of the inner box goes here -->
+          </div>
+        </div>
+      </div>
 
-      <table>
-        <tr>
-          <th colspan="2">Database Schema</th>
-        </tr>
-        <tr>
-          <td>Employees</td>
-          <td>EmployeeID, Name, Job Role, Division, Last Login Time</td>
-        </tr>
-        <tr>
-          <td>Robots</td>
-          <td>
-            RobotID, Model, Manufacturing Date, Status, Update Date, Last
-            Updated By
-          </td>
-        </tr>
-        <tr>
-          <td>Logs</td>
-          <td>LogID, EmployeeID, Action Description, Timestamp, Robot ID</td>
-        </tr>
-        <tr>
-          <td>Incidents</td>
-          <td>IncidentID, Description, Timestamp, RobotID, Reported By</td>
-        </tr>
-        <tr>
-          <td>Access_Codes</td>
-          <td>Access Code, EmployeeID, Access Level, Last Access</td>
-        </tr>
-      </table>
+      <div class="side-panel">
+        <div class="side-panel-content">
+          <h2>Cybernetic Sabotage</h2>
+
+          <div class="button-container">
+            <button>Restart</button>
+            <button>Hint</button>
+            <button>Settings</button>
+          </div>
+
+          <table>
+            <tr>
+              <th colspan="2">Database Schema</th>
+            </tr>
+            <tr>
+              <td>Employees</td>
+              <td>EmployeeID, Name, Job Role, Division, Last Login Time</td>
+            </tr>
+            <tr>
+              <td>Robots</td>
+              <td>
+                RobotID, Model, Manufacturing Date, Status, Update Date, Last
+                Updated By
+              </td>
+            </tr>
+            <tr>
+              <td>Logs</td>
+              <td>
+                LogID, EmployeeID, Action Description, Timestamp, Robot ID
+              </td>
+            </tr>
+            <tr>
+              <td>Incidents</td>
+              <td>IncidentID, Description, Timestamp, RobotID, Reported By</td>
+            </tr>
+            <tr>
+              <td>Access_Codes</td>
+              <td>Access Code, EmployeeID, Access Level, Last Access</td>
+            </tr>
+          </table>
+
+          <div class="inner-box-side">
+            <h3>Trinity</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
+              amet sem dui.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
