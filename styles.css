@@ -61,7 +61,7 @@ body {
   cursor: pointer;
 }
 
-.side-panel button::hover {
+.side-panel button:hover {
   background-color: #1a1a1a;
 }
 
