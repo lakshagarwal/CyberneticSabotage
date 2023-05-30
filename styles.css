@@ -1,16 +1,16 @@
 :root {
     --main-color: lime;
-  }
-  
-  body {
+}
+
+body {
     margin: 20px;
     background-color: black;
     color: var(--main-color);
     font-family: Arial, sans-serif;
     height: 100%;
-  }
-  
-  .main-panel {
+}
+
+.main-panel {
     display: inline-block;
     width: 60%;
     height: 90vh;
@@ -20,9 +20,9 @@
     margin: 0 1.5%;
     position: relative;
     vertical-align: top;
-  }
-  
-  .main-panel:before {
+}
+
+.main-panel:before {
     content: '';
     position: absolute;
     top: 0;
@@ -34,9 +34,9 @@
     background-position: center;
     opacity: 0.15;
     z-index: -1;
-  }
-  
-  .side-panel {
+}
+
+.side-panel {
     display: inline-block;
     width: 29%;
     height: 90vh;
@@ -45,9 +45,9 @@
     border: 2px solid var(--main-color);
     border-radius: 10px;
     text-align: center;
-  }
-  
-  .side-panel button {
+}
+
+.side-panel button {
     display: block;
     width: 100%;
     padding: 10px 20px;
@@ -59,41 +59,40 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-  }
-  
-  .side-panel button:hover {
+}
+
+.side-panel button:hover {
     background-color: #1a1a1a;
-  }
-  
-  table {
+}
+
+table {
     border-collapse: collapse;
     border: 1px solid var(--main-color);
     margin: auto;
-  }
-  
-  th {
+}
+
+th {
     text-align: center;
     border: none;
     font-weight: bolder;
-  }
-  
-  td {
+}
+
+td {
     text-align: left;
     border: none;
     border-bottom: 1px solid var(--main-color);
-  }
-  
-  td:nth-child(1) {
+}
+
+td:nth-child(1) {
     width: 90px;
     text-align: center;
-  }
-  
-  td:nth-child(2) {
+}
+
+td:nth-child(2) {
     width: 400px;
     border-left: 1px solid var(--main-color);
-  }
-  
-  tr:first-child>th {
+}
+
+tr:first-child>th {
     border-bottom: 1px solid var(--main-color);
-  }
-  
+}
