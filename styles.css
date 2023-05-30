@@ -22,7 +22,7 @@ body {
   vertical-align: top;
 }
 
-.main-panel:before {
+.main-panel::before {
   content: "";
   position: absolute;
   top: 0;
@@ -54,14 +54,14 @@ body {
   margin-top: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #000000;
+  background-color: #000;
   color: var(--main-color);
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 }
 
-.side-panel button:hover {
+.side-panel button::hover {
   background-color: #1a1a1a;
 }
 
