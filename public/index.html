@@ -10,11 +10,17 @@
       <div class="main-panel">
         <div class="main-panel-container">
           <div class="main-panel-content">
-            <!-- Content of the output box goes here -->
+            <div class="display-text"></div>
           </div>
 
-          <div class="input-box">
-            <!-- Content of the input box goes here -->
+          <div class="input-box" id="input-box">
+            <form action="" method="POST">
+              <textarea
+                rows="8"
+                cols="50"
+                placeholder="Enter your query here"
+              ></textarea>
+            </form>
           </div>
         </div>
       </div>
@@ -70,5 +76,14 @@
         </div>
       </div>
     </div>
+
+    <script>
+      const inputBox = document.querySelector(".input-box textarea");
+      const displayText = document.querySelector(".display-text");
+
+      inputBox.addEventListener("input", function () {
+        displayText.textContent = inputBox.value;
+      });
+    </script>
   </body>
 </html>
