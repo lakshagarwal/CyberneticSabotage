@@ -14,12 +14,15 @@
           </div>
 
           <div class="input-box">
-            <form action="" method="POST">
-              <textarea
-                rows="8"
-                cols="50"
-                placeholder="Enter your query here"
-              ></textarea>
+            <form id="query-form">
+              <div class="input-container">
+                <textarea
+                  id="query-textarea"
+                  rows="8"
+                  placeholder="Enter your SQL query here"
+                ></textarea>
+                <button type="submit" id="submit-button">Submit</button>
+              </div>
             </form>
           </div>
         </div>
@@ -77,13 +80,6 @@
       </div>
     </div>
 
-    <script>
-      const inputBox = document.querySelector(".input-box textarea");
-      const displayText = document.querySelector(".display-text");
-
-      inputBox.addEventListener("input", function () {
-        displayText.textContent = inputBox.value;
-      });
-    </script>
+    <script src="main.js"></script>
   </body>
 </html>
