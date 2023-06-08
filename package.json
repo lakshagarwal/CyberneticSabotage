@@ -1,0 +1,21 @@
+{
+  "name": "cyberneticsabotage",
+  "version": "1.0.0",
+  "description": "Cybernetic Sabotage is an interesting thriller game that can be used to teach and test SQL concepts to students new to the topic.",
+  "main": "index.html",
+  "scripts": {
+    "test": "-"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^16.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "prettier": "^2.8.8"
+  }
+}
