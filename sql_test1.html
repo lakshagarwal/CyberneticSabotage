@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Page Title</title>
+    <script src="sql-wasm.js"></script>
+    <script>
+      // Load sql.js WebAssembly file
+      initSqlJs().then(function (SQL) {
+        fetch('database/main.db')
+          .then((response) => response.arrayBuffer())
+          .then((buffer) => {
+            // Create a new database with the provided sample.sqlite file
+            const db = new SQL.Database(new Uint8Array(buffer));
+
+            console.log('New database created.');
+
+            db.run('CREATE TABLE users (id, name, phone, address);');
+            db.run(`INSERT INTO users (id, name, phone, address) VALUES (1, 'John Doe', '+234-907788', '12 Igodan Street, Okitipupa');`);
+
+            var stmt = db.prepare('SELECT * FROM users WHERE id BETWEEN $start AND $end;');
+            stmt.bind({ $start: 1, $end: 2 });
+
+            while (stmt.step()) {
+              var row = stmt.getAsObject();
+              console.log('Here is a user row: ' + JSON.stringify(row));
+            }
+          })
+          .catch((error) => {
+            console.error('Error fetching the SQLite file:', error);
+          });
+      });
+    </script>
+  </head>
+  <body></body>
+</html>
