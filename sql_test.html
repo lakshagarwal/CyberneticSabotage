@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Page Title</title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.5.0/sql-wasm.js"></script> -->
+    <script src="sql-wasm.js"></script>
+    <script>
+      // Load sql.js WebAssembly file
+      console.log('test')
+      //   let config = {
+      //     locateFile: () => 'node_modules/sql.js/dist/sql-wasm.wasm'
+      //   }
+      //   var initSqlJs = require('./sql-wasm.js')
+
+      let fs = require("fs");
+    //   let initSqlJs = require("./sql-wasm.js");
+      let filebuffer = fs.readFileSync("/path/to/sample.sqlite");
+
+      initSqlJs().then(function (SQL) {
+      // Create a new database with our existing sample.sqlite file
+      const db = new SQL.Database(filebuffer);
+ 
+        console.log('new database')
+        db.run('CREATE TABLE users (id, name, phone, address);')
+        db.run(
+          `INSERT INTO users (id, name, phone, address)
+        VALUES (1, 'John Doe', '+234-907788', '12 Igodan Street, Okitipupa')`
+        )
+
+        var stmt = db.prepare(
+          'SELECT * FROM users WHERE id BETWEEN $start AND $end'
+        )
+
+        stmt.bind({ $start: 1, $end: 2 })
+        while (stmt.step()) {
+          var row = stmt.getAsObject()
+          console.log('Here is a user row: ' + JSON.stringify(row))
+        }
+      });
+    </script>
+  </head>
+  <body></body>
+</html>
