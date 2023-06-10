@@ -1,0 +1,90 @@
+:root {
+  --main-color: white;
+}
+
+body {
+  margin: 20px;
+  height: 100vh;
+  display: flex;
+  align-items: top;
+  justify-content: center;
+  background-color: black;
+  color: lime;
+  font-family: Arial, sans-serif;
+}
+
+.game-screen {
+  text-align: center;
+}
+
+.game-title {
+  position: absolute;
+  bottom: 650px;
+  text-align: center;
+  color: var(--main-color);
+  font-size: 36px;
+  cursor: pointer;
+}
+
+.game-description {
+  position: absolute;
+  bottom: 620px;
+  text-align: center;
+  color: var(--main-color);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.about-button {
+  position: absolute;
+  bottom: 400px;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: var(--main-color);
+  border: 2px solid var(--main-color);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.instructions-button {
+  position: absolute;
+  bottom: 300px;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: var(--main-color);
+  border: 2px solid var(--main-color);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.settings-button {
+  position: absolute;
+  bottom: 200px;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: var(--main-color);
+  border: 2px solid var(--main-color);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.welcome-text {
+  position: absolute;
+  font-family: Abeezee, Arial, sans-serif;
+  bottom: 30px;
+  right: 560px;
+  font-style: italic;
+  color: var(--main-color);
+}
+
+.play-button {
+  position: absolute;
+  bottom: 30px;
+  right: 70px;
+  padding: 10px 20px;
+  background-color: lime;
+  color: var(--main-color);
+  border: 2px solid var(--main-color);
+  font-size: 32px;
+  cursor: pointer;
+}
