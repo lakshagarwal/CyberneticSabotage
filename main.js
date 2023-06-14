@@ -8,6 +8,7 @@ form.addEventListener('submit', function (event) {
   event.preventDefault()
 
   const query = textarea.value
+  // executeQuery(query)
   queryHistory.push(query)
 
   displayText.innerHTML = ''
@@ -18,5 +19,29 @@ form.addEventListener('submit', function (event) {
 
   textarea.value = ''
 
-  // Send the query to the SQL parser here
+  executeQuery(query)
 })
+
+function executeQuery(query) {
+  initSqlJs().then(function (SQL) {
+    fetch('database/main.db')
+      .then(response => response.arrayBuffer())
+      .then(buffer => {
+        const db = new SQL.Database(new Uint8Array(buffer))
+        const stmt = db.prepare(query)
+
+        let results = ''
+        while (stmt.step()) {
+          const row = stmt.getAsObject()
+          results += JSON.stringify(row) + '<br>'
+        }
+
+        displayText.innerHTML += '<p>Results:</p>' + results
+
+        db.close()
+      })
+      .catch(error => {
+        console.error('Error fetching the SQLite file:', error)
+      })
+  })
+}
