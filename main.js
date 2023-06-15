@@ -8,7 +8,6 @@ form.addEventListener('submit', function (event) {
   event.preventDefault()
 
   const query = textarea.value
-  // executeQuery(query)
   queryHistory.push(query)
 
   displayText.innerHTML = ''
@@ -19,10 +18,10 @@ form.addEventListener('submit', function (event) {
 
   textarea.value = ''
 
-  executeQuery(query)
+  executeQuery(query, queryHistory.length - 1)
 })
 
-function executeQuery(query) {
+function executeQuery(query, index) {
   initSqlJs().then(function (SQL) {
     fetch('database/main.db')
       .then(response => response.arrayBuffer())
@@ -30,13 +29,42 @@ function executeQuery(query) {
         const db = new SQL.Database(new Uint8Array(buffer))
         const stmt = db.prepare(query)
 
-        let results = ''
+        const table = document.createElement('table')
+        const thead = document.createElement('thead')
+        const tbody = document.createElement('tbody')
+
+        let headers = null
         while (stmt.step()) {
           const row = stmt.getAsObject()
-          results += JSON.stringify(row) + '<br>'
+
+          if (!headers) {
+            headers = Object.keys(row)
+            const headerRow = document.createElement('tr')
+            headers.forEach(header => {
+              const th = document.createElement('th')
+              th.textContent = header
+              headerRow.appendChild(th)
+            })
+            thead.appendChild(headerRow)
+          }
+
+          const dataRow = document.createElement('tr')
+          headers.forEach(header => {
+            const td = document.createElement('td')
+            td.textContent = row[header]
+            dataRow.appendChild(td)
+          })
+          tbody.appendChild(dataRow)
         }
 
-        displayText.innerHTML += '<p>Results:</p>' + results
+        table.appendChild(thead)
+        table.appendChild(tbody)
+
+        const resultsElement = document.createElement('div')
+        resultsElement.appendChild(table)
+
+        const queryElement = displayText.querySelectorAll('p')[index]
+        queryElement.insertAdjacentElement('afterend', resultsElement)
 
         db.close()
       })
