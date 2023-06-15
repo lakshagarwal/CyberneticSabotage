@@ -30,6 +30,9 @@ function executeQuery(query, index) {
         const stmt = db.prepare(query)
 
         const table = document.createElement('table')
+        table.style.borderCollapse = 'collapse'
+        table.style.width = '100%'
+
         const thead = document.createElement('thead')
         const tbody = document.createElement('tbody')
 
@@ -43,6 +46,8 @@ function executeQuery(query, index) {
             headers.forEach(header => {
               const th = document.createElement('th')
               th.textContent = header
+              th.style.border = '1px solid '
+              th.style.padding = '8px'
               headerRow.appendChild(th)
             })
             thead.appendChild(headerRow)
@@ -52,6 +57,8 @@ function executeQuery(query, index) {
           headers.forEach(header => {
             const td = document.createElement('td')
             td.textContent = row[header]
+            td.style.border = '1px solid'
+            td.style.padding = '8px'
             dataRow.appendChild(td)
           })
           tbody.appendChild(dataRow)
