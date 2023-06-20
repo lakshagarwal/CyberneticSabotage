@@ -4,6 +4,7 @@
   "description": "Cybernetic Sabotage is an interesting thriller game that can be used to teach and test SQL concepts to students new to the topic.",
   "main": "index.html",
   "scripts": {
+    "test": "-",
     "lint": "eslint 'src/**/*.js'",
     "format": "prettier --write 'src/**/*.{html,css}'"
   },
