@@ -1,3 +1,5 @@
+const initSqlJs = require('sql.js')
+
 const textarea = document.querySelector('#query-textarea')
 const displayText = document.querySelector('.display-text')
 const form = document.querySelector('#query-form')
