@@ -1,4 +1,4 @@
-const initSqlJs = require('sql.js')
+/* global initSqlJs */
 
 const textarea = document.querySelector('#query-textarea')
 const displayText = document.querySelector('.display-text')
