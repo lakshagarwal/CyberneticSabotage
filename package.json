@@ -17,5 +17,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.1.1",
     "prettier": "^2.8.8"
+  },
+  "dependencies": {
+    "sql.js": "^1.8.0"
   }
 }
