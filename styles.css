@@ -53,6 +53,26 @@ body {
   justify-content: space-between;
 }
 
+.display-text {
+  height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--main-color) transparent;
+}
+
+.display-text::-webkit-scrollbar {
+  width: 4px;
+}
+
+.display-text::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.display-text::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 5px;
+}
+
 .input-box textarea {
   width: 100%;
   height: 100%;
@@ -79,7 +99,7 @@ body {
 
 #query-textarea {
   flex-grow: 1;
-  margin-right: 10px;
+  margin-right: 2px;
   box-sizing: border-box;
 }
 
