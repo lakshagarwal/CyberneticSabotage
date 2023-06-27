@@ -55,6 +55,7 @@ body {
 
 .display-text {
   height: 70vh;
+  padding-right: 15px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--main-color) transparent;
