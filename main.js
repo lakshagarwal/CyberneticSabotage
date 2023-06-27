@@ -44,17 +44,14 @@ form.addEventListener('submit', function (event) {
   score += 5
   updateScore()
 
-  displayText.innerHTML = ''
-  queryHistory.forEach((query, index) => {
-    displayText.innerHTML +=
-      '<p>Query ' + (index + 1) + ': ' + query.replace(/\n/g, '<br>') + '</p>'
-  })
-
-  scrollToBottom()
+  const index = queryHistory.length - 1
+  displayText.innerHTML +=
+    '<p>Query ' + (index + 1) + ': ' + query.replace(/\n/g, '<br>') + '</p>'
 
   textarea.value = ''
 
-  executeQuery(query, queryHistory.length - 1)
+  scrollToBottom()
+  executeQuery(query, index)
 })
 
 function executeQuery (query, index) {
@@ -109,8 +106,10 @@ function executeQuery (query, index) {
         const queryElement = displayText.querySelectorAll('p')[index]
         queryElement.insertAdjacentElement('afterend', resultsElement)
 
+        scrollToBottom()
         db.close()
       })
+
       .catch(error => {
         console.error('Error fetching the SQLite file:', error)
       })
