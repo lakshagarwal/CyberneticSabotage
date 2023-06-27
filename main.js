@@ -50,6 +50,8 @@ form.addEventListener('submit', function (event) {
       '<p>Query ' + (index + 1) + ': ' + query.replace(/\n/g, '<br>') + '</p>'
   })
 
+  scrollToBottom()
+
   textarea.value = ''
 
   executeQuery(query, queryHistory.length - 1)
@@ -113,6 +115,11 @@ function executeQuery (query, index) {
         console.error('Error fetching the SQLite file:', error)
       })
   })
+}
+
+function scrollToBottom () {
+  const displayText = document.querySelector('.display-text')
+  displayText.scrollTop = displayText.scrollHeight
 }
 
 startGame()
