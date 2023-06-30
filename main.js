@@ -104,6 +104,7 @@ function executeQuery (query, index, queryWrapper) {
           displayError(queryWrapper, errorMessage)
         }
         db.close()
+        queryWrapper.appendChild(document.createElement('br'))
         scrollToBottom()
       })
       .catch(error => {
