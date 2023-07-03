@@ -63,6 +63,7 @@ body {
 
 .display-text::-webkit-scrollbar {
   width: 4px;
+  height: 4px;
 }
 
 .display-text::-webkit-scrollbar-track {
