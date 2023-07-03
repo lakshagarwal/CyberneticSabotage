@@ -9,6 +9,8 @@ let queryHistory = []
 let startTime = null
 let score = 0
 
+let db
+
 function restartGame () {
   queryHistory = []
   displayText.innerHTML = ''
@@ -16,11 +18,13 @@ function restartGame () {
   score = 0
   updateTimer()
   updateScore()
+  initializeDB()
 }
 
 function startGame () {
   startTime = Date.now()
   setInterval(updateTimer, 1000)
+  initializeDB()
 }
 
 function updateTimer () {
@@ -58,58 +62,72 @@ form.addEventListener('submit', function (event) {
   scrollToBottom()
 })
 
-function executeQuery (query, index, queryWrapper) {
+function displayResults (queryWrapper, result) {
+  const table = document.createElement('table')
+  table.style.borderCollapse = 'collapse'
+  table.style.width = '100%'
+  const thead = document.createElement('thead')
+  const tbody = document.createElement('tbody')
+  let headers = null
+  result.values.forEach((row, rowIndex) => {
+    if (!headers) {
+      headers = result.columns
+      const headerRow = document.createElement('tr')
+      headers.forEach(header => {
+        const th = document.createElement('th')
+        th.textContent = header
+        th.style.border = '1px solid'
+        th.style.padding = '8px'
+        headerRow.appendChild(th)
+      })
+      thead.appendChild(headerRow)
+    }
+    const dataRow = document.createElement('tr')
+    headers.forEach(header => {
+      const td = document.createElement('td')
+      td.textContent = result.values[rowIndex][headers.indexOf(header)]
+      td.style.border = '1px solid'
+      td.style.padding = '8px'
+      dataRow.appendChild(td)
+    })
+    tbody.appendChild(dataRow)
+  })
+  table.appendChild(thead)
+  table.appendChild(tbody)
+  queryWrapper.appendChild(table)
+}
+
+function displayMessage (queryWrapper, message) {
+  const p = document.createElement('p')
+  p.textContent = message
+  queryWrapper.appendChild(p)
+}
+
+function initializeDB () {
   initSqlJs().then(function (SQL) {
     fetch('database/main.db')
       .then(response => response.arrayBuffer())
       .then(buffer => {
-        const db = new SQL.Database(new Uint8Array(buffer))
-        try {
-          const stmt = db.prepare(query)
-          const table = document.createElement('table')
-          table.style.borderCollapse = 'collapse'
-          table.style.width = '100%'
-          const thead = document.createElement('thead')
-          const tbody = document.createElement('tbody')
-          let headers = null
-          while (stmt.step()) {
-            const row = stmt.getAsObject()
-            if (!headers) {
-              headers = Object.keys(row)
-              const headerRow = document.createElement('tr')
-              headers.forEach(header => {
-                const th = document.createElement('th')
-                th.textContent = header
-                th.style.border = '1px solid'
-                th.style.padding = '8px'
-                headerRow.appendChild(th)
-              })
-              thead.appendChild(headerRow)
-            }
-            const dataRow = document.createElement('tr')
-            headers.forEach(header => {
-              const td = document.createElement('td')
-              td.textContent = row[header]
-              td.style.border = '1px solid'
-              td.style.padding = '8px'
-              dataRow.appendChild(td)
-            })
-            tbody.appendChild(dataRow)
-          }
-          table.appendChild(thead)
-          table.appendChild(tbody)
-          queryWrapper.appendChild(table)
-        } catch (error) {
-          const errorMessage = 'ERROR: ' + error.message
-          displayError(queryWrapper, errorMessage)
-        }
-        db.close()
-        scrollToBottom()
-      })
-      .catch(error => {
-        console.error('ERROR:', error)
-      })
-  })
+        db = new SQL.Database(new Uint8Array(buffer))
+      }
+      )
+  }
+  )
+}
+
+function executeQuery (query, index, queryWrapper) {
+  try {
+    const results = db.exec(query)
+    if (results.length === 0) {
+      displayMessage(queryWrapper, 'Command executed successfully.')
+    } else {
+      displayResults(queryWrapper, results[0])
+    }
+  } catch (error) {
+    const errorMessage = 'ERROR: ' + error.message
+    displayError(queryWrapper, errorMessage)
+  }
+  scrollToBottom()
 }
 
 function displayError (queryWrapper, message) {
