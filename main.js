@@ -4,7 +4,7 @@ const textarea = document.querySelector('#query-textarea')
 const displayText = document.querySelector('.display-text')
 const form = document.querySelector('#query-form')
 const restartButton = document.getElementById('restart-button')
-const storyline = document.getElementById('trinity_text')
+const storyline = document.getElementById('trinity-text')
 
 let queryHistory = []
 let currentQueryIndex = 0
