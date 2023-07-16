@@ -4,11 +4,34 @@ const textarea = document.querySelector('#query-textarea')
 const displayText = document.querySelector('.display-text')
 const form = document.querySelector('#query-form')
 const restartButton = document.getElementById('restart-button')
+const storyline = document.getElementById('trinity-text')
 
 let queryHistory = []
+let currentQueryIndex = 0
 let startTime = null
 let score = 0
+let flag = false
+const queries = [
+  ' Hey Detective! The first task is to list all incidents from the \'Incident\' table.',
+  ' Find the most recent incident involving all models.',
+  ' Find out how many incidents exist in the company for the robot models MegaMech and TurboBot .',
+  ' Find out how many of these robots have been updated in the past one week'
+]
+storyline.textContent = queries[0]
+const answerKeys = [
+  [
+    [1, 'Robot malfunctioned during production', '2022-02-20 09:30:00', 'Jane Smith', 2],
+    [2, 'Collision with another robot', '2022-03-15 13:45:00', 'Emily Davis', 4]
+  ],
+  [
+    [2, 'Collision with another robot', '2022-03-15 13:45:00', 'Emily Davis', 4]
+  ],
 
+  [
+    ['MegaMech', 1],
+    ['TurboBot', 1]
+  ]
+]
 let db
 
 function restartGame () {
@@ -19,6 +42,8 @@ function restartGame () {
   updateTimer()
   updateScore()
   initializeDB()
+  storyline.textContent = queries[0]
+  currentQueryIndex = 0
 }
 
 function startGame () {
@@ -27,6 +52,17 @@ function startGame () {
   initializeDB()
 }
 
+function getStory () {
+  const nextQueryIndex = currentQueryIndex + 1
+  if (flag === true && nextQueryIndex < queries.length) {
+    const nextQuery = queries[nextQueryIndex]
+    storyline.textContent = 'Correct! Now the next problem is: ' + nextQuery
+    currentQueryIndex = nextQueryIndex
+  } else {
+    const currentQuery = queries[currentQueryIndex]
+    storyline.textContent = 'Oops! Please try again.' + currentQuery
+  }
+}
 function updateTimer () {
   const now = Date.now()
   const timeElapsed = Math.round((now - startTime) / 1000)
@@ -57,7 +93,7 @@ form.addEventListener('submit', function (event) {
   scrollToBottom()
 
   executeQuery(query, queryHistory.length - 1, queryWrapper)
-
+  getStory()
   displayText.appendChild(queryWrapper)
   scrollToBottom()
 })
@@ -120,12 +156,19 @@ function executeQuery (query, index, queryWrapper) {
     const results = db.exec(query)
     if (results.length === 0) {
       displayMessage(queryWrapper, 'Command executed successfully.')
+      flag = false
     } else {
       displayResults(queryWrapper, results[0])
+      if (validateResult(results[0].values, currentQueryIndex)) {
+        flag = true
+      } else {
+        flag = false
+      }
     }
   } catch (error) {
     const errorMessage = 'ERROR: ' + error.message
     displayError(queryWrapper, errorMessage)
+    flag = false
   }
   scrollToBottom()
 }
@@ -138,6 +181,27 @@ function displayError (queryWrapper, message) {
   scrollToBottom()
 }
 
+function validateResult (resultValues, queryIndex) {
+  const answerKey = answerKeys[queryIndex]
+  if (!answerKey) {
+    return false
+  }
+  if (resultValues.length !== answerKey.length) {
+    return false
+  }
+  if (resultValues.length > 0 && resultValues[0].length !== answerKey[0].length) {
+    return false
+  }
+  for (let i = 0; i < resultValues.length; i++) {
+    for (let j = 0; j < resultValues[i].length; j++) {
+      console.log('5th one')
+      if (resultValues[i][j] !== answerKey[i][j]) {
+        return false
+      }
+    }
+  }
+  return true
+}
 function scrollToBottom () {
   const displayText = document.querySelector('.display-text')
   displayText.scrollTop = displayText.scrollHeight
