@@ -16,19 +16,13 @@ const queries = [
   ' Find the most recent incident involving all models.',
   ' Find out how many incidents exist in the company for the robot models MegaMech and TurboBot .',
   ' Find out how many of these robots have been updated in the past one week'
-  // Add more queries here
 ]
 storyline.textContent = queries[0]
 const answerKeys = [
-//   // Define answer keys for each query in the same order as the queries array
-//   // Each answer key should be an array of arrays representing the rows and columns of the expected table
-//   // Example: [['column1', 'column2'], ['value1', 'value2']]
   [
-    // ['incidentID', 'desc', 'timeStamp', 'reportedBy', 'robotID'],
     [1, 'Robot malfunctioned during production', '2022-02-20 09:30:00', 'Jane Smith', 2],
     [2, 'Collision with another robot', '2022-03-15 13:45:00', 'Emily Davis', 4]
   ],
-  //   // Add more answer keys for each query
   [
     [2, 'Collision with another robot', '2022-03-15 13:45:00', 'Emily Davis', 4]
   ],
@@ -137,7 +131,6 @@ function displayResults (queryWrapper, result) {
   table.appendChild(thead)
   table.appendChild(tbody)
   queryWrapper.appendChild(table)
-  // flag = true
 }
 
 function displayMessage (queryWrapper, message) {
@@ -187,43 +180,27 @@ function displayError (queryWrapper, message) {
   queryWrapper.appendChild(errorElement)
   scrollToBottom()
 }
+
 function validateResult (resultValues, queryIndex) {
   const answerKey = answerKeys[queryIndex]
-  console.log(resultValues.length)
-  console.log(answerKey.length)
-  console.log(resultValues[0][0])
-  console.log(answerKey[0][0])
-  console.log(resultValues[0][1])
-  console.log(answerKey[0][1])
-  console.log(resultValues[1])
-  console.log(answerKey[1])
-  // console.log(resultValues[1][1])
-  // console.log(answerKey[1][1])
   if (!answerKey) {
-    return false // No answer key found for the query
+    return false
   }
-  console.log('2nd one')
-  // Check if the number of rows and columns match
   if (resultValues.length !== answerKey.length) {
     return false
   }
-  console.log('3rd one')
   if (resultValues.length > 0 && resultValues[0].length !== answerKey[0].length) {
     return false
   }
-  console.log('4th one')
-  // Check each cell value against the answer key
   for (let i = 0; i < resultValues.length; i++) {
     for (let j = 0; j < resultValues[i].length; j++) {
       console.log('5th one')
       if (resultValues[i][j] !== answerKey[i][j]) {
-        return false // Cell value does not match the answer key
+        return false
       }
-      console.log('6th one')
     }
   }
-  console.log('7th  one')
-  return true // All cell values match the answer key
+  return true
 }
 function scrollToBottom () {
   const displayText = document.querySelector('.display-text')
