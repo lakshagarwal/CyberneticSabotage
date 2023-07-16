@@ -12,10 +12,10 @@ let startTime = null
 let score = 0
 let flag = false
 const queries = [
-  ' Hey Neo! The first task is to list all incidents from the \'Incident\' table.',
-  ' to find the most recent incident involving all models.',
-  ' to find out how many incidents exist in the company for the robot models MegaMech and TurboBot .',
-  ' to find how many exist'
+  ' Hey Detective! The first task is to list all incidents from the \'Incident\' table.',
+  ' Find the most recent incident involving all models.',
+  ' Find out how many incidents exist in the company for the robot models MegaMech and TurboBot .',
+  ' Find out how many of these robots have been updated in the past one week'
   // Add more queries here
 ]
 storyline.textContent = queries[0]
@@ -65,7 +65,8 @@ function getStory () {
     storyline.textContent = 'Correct! Now the next problem is: ' + nextQuery
     currentQueryIndex = nextQueryIndex
   } else {
-    storyline.textContent = 'Oops! Please try again'
+    const currentQuery = queries[currentQueryIndex]
+    storyline.textContent = 'Oops! Please try again.' + currentQuery
   }
 }
 function updateTimer () {
