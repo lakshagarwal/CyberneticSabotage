@@ -54,7 +54,7 @@ body {
 }
 
 .display-text {
-  height: 70vh;
+  height: 60vh;
   padding-right: 15px;
   overflow-y: auto;
   scrollbar-width: thin;
@@ -73,6 +73,11 @@ body {
 .display-text::-webkit-scrollbar-thumb {
   background: var(--main-color);
   border-radius: 5px;
+}
+
+.hint-container {
+  border: 1px solid var(--main-color);
+  margin-top: auto;
 }
 
 .input-box textarea {

@@ -5,13 +5,14 @@ const form = document.querySelector('#query-form')
 const restartButton = document.getElementById('restart-button')
 const storyline = document.getElementById('trinity-text')
 const hintButton = document.getElementById('hint-button')
+const hintContainer = document.getElementById('hint-text')
 
 let queryHistory = []
 let currentQueryIndex = 0
 let startTime = null
 let score = 0
 let flag = false
-let hintCounter = 0
+let hintCounter = 1
 
 const queries = [
   ' Hey Detective! The first task is to list all incidents from the \'Incident\' table.',
@@ -28,12 +29,12 @@ storyline.textContent = queries[0]
 //   'djbscks'
 // ]
 const hints = [
-  [['You can choose the select statement here!'], ['Hint 2 for question 1']],
-  [['Hint 1 for question 2'], ['Hint 2 for question 2']],
-  [['Hint 1 for question 3'], ['Hint 2 for question 3']],
-  [['Hint 1 for question 4'], ['Hint 2 for question 4']]
+  [['Hint : For your first hint for the 1st problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 1'], ['Hint 2 for question 1']],
+  [['Hint : For your first hint for the 2nd problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 2'], ['Hint 2 for question 2']],
+  [['Hint : For your first hint for the 3rd problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 3'], ['Hint 2 for question 3']],
+  [['Hint : For your first hint for the 4th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 4'], ['Hint 2 for question 4']]
 ]
-
+hintContainer.textContent = hints[0][0]
 const answerKeys = [
   [
     [1, 'Robot malfunctioned during production', '2022-02-20 09:30:00', 'Jane Smith', 2],
@@ -60,7 +61,8 @@ function restartGame () {
   initializeDB()
   storyline.textContent = queries[0]
   currentQueryIndex = 0
-  hintCounter = 0
+  hintCounter = 1
+  hintContainer.textContent = hints[0][0]
 }
 
 function startGame () {
@@ -75,7 +77,8 @@ function getStory () {
     const nextQuery = queries[nextQueryIndex]
     storyline.textContent = 'Correct! Now the next problem is: ' + nextQuery
     currentQueryIndex = nextQueryIndex
-    hintCounter = 0
+    hintCounter = 1
+    hintContainer.textContent = hints[currentQueryIndex][0]
   } else {
     const currentQuery = queries[currentQueryIndex]
     storyline.textContent = 'Oops! Please try again.' + currentQuery
@@ -122,17 +125,13 @@ function getHint () {
   const hintIndex = currentQueryIndex
   const hintArray = hints[hintIndex]
   const subArrayLength = hintArray.length
+
   if (hintCounter < subArrayLength) {
     const hint = hintArray[hintCounter]
-
-    if (hint) {
-      alert(hint)
-    } else {
-      alert('No more hints available.')
-    }
+    hintContainer.textContent = hint
     hintCounter = hintCounter + 1
   } else {
-    alert('No more hints available.')
+    hintContainer.textContent = 'No more hints available.'
   }
 }
 
