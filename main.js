@@ -1,16 +1,18 @@
 /* global initSqlJs */
-
 const textarea = document.querySelector('#query-textarea')
 const displayText = document.querySelector('.display-text')
 const form = document.querySelector('#query-form')
 const restartButton = document.getElementById('restart-button')
 const storyline = document.getElementById('trinity-text')
+const hintButton = document.getElementById('hint-button')
 
 let queryHistory = []
 let currentQueryIndex = 0
 let startTime = null
 let score = 0
 let flag = false
+let hintCounter = 0
+
 const queries = [
   ' Hey Detective! The first task is to list all incidents from the \'Incident\' table.',
   ' Find the most recent incident involving all models.',
@@ -18,6 +20,20 @@ const queries = [
   ' Find out how many of these robots have been updated in the past one week'
 ]
 storyline.textContent = queries[0]
+
+// const hints = [
+//   'You can choose the select statement here!',
+//   'jcdbssskc',
+//   'djbewbjs',
+//   'djbscks'
+// ]
+const hints = [
+  [['You can choose the select statement here!'], ['Hint 2 for question 1']],
+  [['Hint 1 for question 2'], ['Hint 2 for question 2']],
+  [['Hint 1 for question 3'], ['Hint 2 for question 3']],
+  [['Hint 1 for question 4'], ['Hint 2 for question 4']]
+]
+
 const answerKeys = [
   [
     [1, 'Robot malfunctioned during production', '2022-02-20 09:30:00', 'Jane Smith', 2],
@@ -44,6 +60,7 @@ function restartGame () {
   initializeDB()
   storyline.textContent = queries[0]
   currentQueryIndex = 0
+  hintCounter = 0
 }
 
 function startGame () {
@@ -58,11 +75,13 @@ function getStory () {
     const nextQuery = queries[nextQueryIndex]
     storyline.textContent = 'Correct! Now the next problem is: ' + nextQuery
     currentQueryIndex = nextQueryIndex
+    hintCounter = 0
   } else {
     const currentQuery = queries[currentQueryIndex]
     storyline.textContent = 'Oops! Please try again.' + currentQuery
   }
 }
+
 function updateTimer () {
   const now = Date.now()
   const timeElapsed = Math.round((now - startTime) / 1000)
@@ -97,6 +116,60 @@ form.addEventListener('submit', function (event) {
   displayText.appendChild(queryWrapper)
   scrollToBottom()
 })
+
+hintButton.addEventListener('click', getHint)
+function getHint () {
+  const hintIndex = currentQueryIndex
+  const hintArray = hints[hintIndex]
+  const subArrayLength = hintArray.length
+  // Get the current hint index from the query history
+  // const currentHintIndex = queryHistory.filter(q => q === queries[currentQueryIndex]).length
+  console.log(hintCounter)
+  // Get the current hint based on the current hint index
+  if (hintCounter < subArrayLength) {
+    const hint = hintArray[hintCounter]
+
+    if (hint) {
+    // Display the hint in a panel or dialogue box
+    // Update the existing code here to show the hint using your preferred method
+    // Example: Using an alert box
+      alert(hint)
+    } else {
+    // No more hints available
+    // Update the existing code here to handle the case when no more hints are available
+    // Example: Using an alert box
+      alert('No more hints available.')
+    }
+    hintCounter = hintCounter + 1
+  } else {
+    alert('No more hints available.')
+  }
+}
+// form.addEventListener('hint', function (event) {
+//   const hintIndex = currentQueryIndex
+//   const hintArray = hints[hintIndex]
+//   const subArrayLength = hintArray.length
+//   // Get the current hint index from the query history
+//   // const currentHintIndex = queryHistory.filter(q => q === queries[currentQueryIndex]).length
+
+//   // Get the current hint based on the current hint index
+//   if (hintCounter < subArrayLength) {
+//     const hint = hintArray[hintCounter]
+
+//     if (hint) {
+//     // Display the hint in a panel or dialogue box
+//     // Update the existing code here to show the hint using your preferred method
+//     // Example: Using an alert box
+//       alert(hint)
+//     } else {
+//     // No more hints available
+//     // Update the existing code here to handle the case when no more hints are available
+//     // Example: Using an alert box
+//       alert('No more hints available.')
+//     }
+//     hintCounter = hintCounter + 1
+//   }
+// })
 
 function displayResults (queryWrapper, result) {
   const table = document.createElement('table')
