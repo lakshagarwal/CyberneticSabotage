@@ -122,22 +122,12 @@ function getHint () {
   const hintIndex = currentQueryIndex
   const hintArray = hints[hintIndex]
   const subArrayLength = hintArray.length
-  // Get the current hint index from the query history
-  // const currentHintIndex = queryHistory.filter(q => q === queries[currentQueryIndex]).length
-  console.log(hintCounter)
-  // Get the current hint based on the current hint index
   if (hintCounter < subArrayLength) {
     const hint = hintArray[hintCounter]
 
     if (hint) {
-    // Display the hint in a panel or dialogue box
-    // Update the existing code here to show the hint using your preferred method
-    // Example: Using an alert box
       alert(hint)
     } else {
-    // No more hints available
-    // Update the existing code here to handle the case when no more hints are available
-    // Example: Using an alert box
       alert('No more hints available.')
     }
     hintCounter = hintCounter + 1
@@ -145,31 +135,6 @@ function getHint () {
     alert('No more hints available.')
   }
 }
-// form.addEventListener('hint', function (event) {
-//   const hintIndex = currentQueryIndex
-//   const hintArray = hints[hintIndex]
-//   const subArrayLength = hintArray.length
-//   // Get the current hint index from the query history
-//   // const currentHintIndex = queryHistory.filter(q => q === queries[currentQueryIndex]).length
-
-//   // Get the current hint based on the current hint index
-//   if (hintCounter < subArrayLength) {
-//     const hint = hintArray[hintCounter]
-
-//     if (hint) {
-//     // Display the hint in a panel or dialogue box
-//     // Update the existing code here to show the hint using your preferred method
-//     // Example: Using an alert box
-//       alert(hint)
-//     } else {
-//     // No more hints available
-//     // Update the existing code here to handle the case when no more hints are available
-//     // Example: Using an alert box
-//       alert('No more hints available.')
-//     }
-//     hintCounter = hintCounter + 1
-//   }
-// })
 
 function displayResults (queryWrapper, result) {
   const table = document.createElement('table')
