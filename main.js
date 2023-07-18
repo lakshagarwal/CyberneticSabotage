@@ -20,8 +20,17 @@ let hintCounter = 1
 const queries = [
   ' Hey Detective! The first task is to list all incidents from the \'Incident\' table.',
   ' Find the most recent incident involving all models.',
-  ' Find out how many incidents exist in the company for the robot models MegaMech and TurboBot .',
-  ' Find out how many of these robots have been updated in the past one week'
+  ' Find out how many incidents exist in the company for the robot models MegaMech and TurboBot.',
+  ' Find out how many of these robots have been updated in the past one week.',
+  ' Find out which all employees have updated these robots recently.',
+  ' Mark all MegaMech and TurboBot robots as "under repair" in the database.',
+  ' Identify the employee who reported the highest number of incidents.',
+  ' Create a view that joins the \'Incident\' and \'Robot\' table to see all incidents associated with each robot model.',
+  ' Identify the source of the malfunctions by finding models of robots that have more than a certain number of incidents and removing the duplicate entries.',
+  ' Create a new table that records the repair status of all robots.',
+  ' Insert/update repair records for all MegaMech and TurboBot robots into the new table.',
+  ' Find  the last employee who updated the software of the malfunctioning robots.',
+  ' Gather all evidence against the one who caused the corporate espionage.'
 ]
 storyline.textContent = queries[0]
 
@@ -29,7 +38,16 @@ const hints = [
   [['Hint : For your first hint for the 1st problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 1'], ['Hint 2 for question 1']],
   [['Hint : For your first hint for the 2nd problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 2'], ['Hint 2 for question 2']],
   [['Hint : For your first hint for the 3rd problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 3'], ['Hint 2 for question 3']],
-  [['Hint : For your first hint for the 4th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 4'], ['Hint 2 for question 4']]
+  [['Hint : For your first hint for the 4th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 4'], ['Hint 2 for question 4']],
+  [['Hint : For your first hint for the 5th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 5'], ['Hint 2 for question 5']],
+  [['Hint : For your first hint for the 6th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 6'], ['Hint 2 for question 6']],
+  [['Hint : For your first hint for the 7th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 7'], ['Hint 2 for question 7']],
+  [['Hint : For your first hint for the 8th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 8'], ['Hint 2 for question 8']],
+  [['Hint : For your first hint for the 9th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 9'], ['Hint 2 for question 9']],
+  [['Hint : For your first hint for the 10th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 10'], ['Hint 2 for question 10']],
+  [['Hint : For your first hint for the 11th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 11'], ['Hint 2 for question 11']],
+  [['Hint : For your first hint for the 12th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 12'], ['Hint 2 for question 12']],
+  [['Hint : For your first hint for the 13th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 13'], ['Hint 2 for question 13']]
 ]
 hintContainer.textContent = hints[0][0]
 const answerKeys = [
