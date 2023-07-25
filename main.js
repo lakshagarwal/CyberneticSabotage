@@ -13,6 +13,7 @@ let queryHistory = []
 let currentQueryIndex = 0
 let startTime = null
 let score = 0
+let progress = 10
 let flag = false
 let hintCounter = 1
 
@@ -52,9 +53,10 @@ function restartGame () {
   displayText.innerHTML = ''
   startTime = Date.now()
   score = 0
+  progress = 10
   updateTimer()
-  updateScore()
-  updateProgressBar(10)
+  updateScore(0)
+  updateProgressBar(0)
   initializeDB()
   storyline.textContent = queries[0]
   currentQueryIndex = 0
@@ -64,22 +66,27 @@ function restartGame () {
 
 function startGame () {
   startTime = Date.now()
+  score = 0
+  progress = 10
   setInterval(updateTimer, 1000)
   initializeDB()
-  updateProgressBar(10)
+  updateProgressBar(0)
 }
 
 function getStory () {
   const nextQueryIndex = currentQueryIndex + 1
   if (flag === true && nextQueryIndex < queries.length) {
     const nextQuery = queries[nextQueryIndex]
-    storyline.textContent = 'Correct! Now the next problem is: ' + nextQuery
+    storyline.textContent = 'Excellent! Next, ' + nextQuery
     currentQueryIndex = nextQueryIndex
     hintCounter = 1
     hintContainer.textContent = hints[currentQueryIndex][0]
+    updateScore(10)
+    updateProgressBar(8)
   } else {
     const currentQuery = queries[currentQueryIndex]
     storyline.textContent = 'Oops! Please try again.' + currentQuery
+    updateScore(-10)
   }
 }
 
@@ -89,8 +96,16 @@ function updateTimer () {
   document.getElementById('timer').textContent = 'Time: ' + timeElapsed + 's'
 }
 
-function updateScore () {
+function updateScore (change) {
+  score = score + change
   document.getElementById('score').textContent = 'Score: ' + score
+}
+
+function updateProgressBar (change) {
+  progress = Math.min(progress + change, 100)
+  progress = progress + change
+  progressBar.style.width = progress + '%'
+  progressText.innerText = progress + '%'
 }
 
 restartButton.addEventListener('click', restartGame)
@@ -100,8 +115,6 @@ form.addEventListener('submit', function (event) {
 
   const query = textarea.value
   queryHistory.push(query)
-  score += 5
-  updateScore()
 
   const queryWrapper = document.createElement('div')
 
@@ -240,11 +253,6 @@ function validateResult (resultValues, queryIndex) {
 function scrollToBottom () {
   const displayText = document.querySelector('.display-text')
   displayText.scrollTop = displayText.scrollHeight
-}
-
-function updateProgressBar (percentage) {
-  progressBar.style.width = percentage + '%'
-  progressText.innerText = percentage + '%'
 }
 
 startGame()
