@@ -1,4 +1,3 @@
-/* eslint-disable no-tabs */
 /* global initSqlJs */
 const textarea = document.querySelector('#query-textarea')
 const displayText = document.querySelector('.display-text')
@@ -280,15 +279,12 @@ function executeQuery (query, index, queryWrapper) {
     if (results.length === 0) {
       displayMessage(queryWrapper, 'Command executed successfully.')
       flag = false
-      console.log('hello')
     } else {
       displayResults(queryWrapper, results[0])
       if (validateResult(results[0].values, currentQueryIndex)) {
         flag = true
-        console.log('hello2')
       } else {
         flag = false
-        console.log('hello3')
       }
     }
   } catch (error) {
