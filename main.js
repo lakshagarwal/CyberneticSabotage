@@ -6,6 +6,8 @@ const restartButton = document.getElementById('restart-button')
 const storyline = document.getElementById('trinity-text')
 const hintButton = document.getElementById('hint-button')
 const hintContainer = document.getElementById('hint-text')
+const progressBar = document.getElementById('progress-bar')
+const progressText = document.getElementById('progress-text')
 
 let queryHistory = []
 let currentQueryIndex = 0
@@ -22,12 +24,6 @@ const queries = [
 ]
 storyline.textContent = queries[0]
 
-// const hints = [
-//   'You can choose the select statement here!',
-//   'jcdbssskc',
-//   'djbewbjs',
-//   'djbscks'
-// ]
 const hints = [
   [['Hint : For your first hint for the 1st problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 1'], ['Hint 2 for question 1']],
   [['Hint : For your first hint for the 2nd problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 2'], ['Hint 2 for question 2']],
@@ -58,6 +54,7 @@ function restartGame () {
   score = 0
   updateTimer()
   updateScore()
+  updateProgressBar(10)
   initializeDB()
   storyline.textContent = queries[0]
   currentQueryIndex = 0
@@ -69,6 +66,7 @@ function startGame () {
   startTime = Date.now()
   setInterval(updateTimer, 1000)
   initializeDB()
+  updateProgressBar(10)
 }
 
 function getStory () {
@@ -242,6 +240,11 @@ function validateResult (resultValues, queryIndex) {
 function scrollToBottom () {
   const displayText = document.querySelector('.display-text')
   displayText.scrollTop = displayText.scrollHeight
+}
+
+function updateProgressBar (percentage) {
+  progressBar.style.width = percentage + '%'
+  progressText.innerText = percentage + '%'
 }
 
 startGame()
