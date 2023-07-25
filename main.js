@@ -100,19 +100,19 @@ const answerKeys = [
   ],
 
   [
-    [1,	'RoboBot 2000', 6, 7, 'Communication failure with central control system', '2022-08-18 09:45:00',	'Emily', 'Davis'],
-    [1,	'RoboBot 2000', 6,	3,	'Software glitch caused erratic behavior',	'2022-04-05 10:15:00',	'Emily', 'Davis'],
-    [2,	'MegaMech',	3,	5,	'Component failure resulted in production delay',	'2022-06-25 11:00:00',	'John', 'Doe'],
-    [2,	'MegaMech',	3,	9,	'Overheating issue caused temporary shutdown',	'2022-10-30 10:10:00',	'John', 'Doe'],
-    [2,	'MegaMech',	3,	1,	'Robot malfunctioned during production', '2022-02-20 09:30:00',	'John', 'Doe'],
-    [3,	'CyberHelper', 4,	4,	'Power outage interrupted production process',	'2022-05-10 14:20:00',	'Jane', 'Smith'],
-    [3,	'CyberHelper',	4,	8,	'Sensor calibration error led to incorrect measurements',	'2022-09-27 13:00:00',	'Jane', 'Smith'],
-    [4,	'TurboBot',	2,	2,	'Collision with another robot',	'2022-03-15 13:45:00',	'karim', 'khoja'],
-    [4,	'TurboBot', 2,	6,	'Robot arm malfunctioned, causing damage to equipment',	'2022-07-12 16:30:00',	'karim', 'khoja'],
-    [4,	'TurboBot',	2,	10,	'Software update caused compatibility problems', '2022-11-22 15:20:00', 'karim', 'khoja'],
-    [5,	'MegaMech', 4, '', '', '', 'Jane', 'Smith'],
-    [6,	'RoboBot',	8, '', '', '', 'Ujjwal', 'Maken'],
-    [7, 'TurboBot',	7, '', '', '', 'Laksh',	'Agarwal']
+    [1, 'RoboBot 2000', 6, 7, 'Communication failure with central control system', '2022-08-18 09:45:00', 'Emily', 'Davis'],
+    [1, 'RoboBot 2000', 6, 3, 'Software glitch caused erratic behavior', '2022-04-05 10:15:00', 'Emily', 'Davis'],
+    [2, 'MegaMech', 3, 5, 'Component failure resulted in production delay', '2022-06-25 11:00:00', 'John', 'Doe'],
+    [2, 'MegaMech', 3, 9, 'Overheating issue caused temporary shutdown', '2022-10-30 10:10:00', 'John', 'Doe'],
+    [2, 'MegaMech', 3, 1, 'Robot malfunctioned during production', '2022-02-20 09:30:00', 'John', 'Doe'],
+    [3, 'CyberHelper', 4, 4, 'Power outage interrupted production process', '2022-05-10 14:20:00', 'Jane', 'Smith'],
+    [3, 'CyberHelper', 4, 8, 'Sensor calibration error led to incorrect measurements', '2022-09-27 13:00:00', 'Jane', 'Smith'],
+    [4, 'TurboBot', 2, 2, 'Collision with another robot', '2022-03-15 13:45:00', 'karim', 'khoja'],
+    [4, 'TurboBot', 2, 6, 'Robot arm malfunctioned, causing damage to equipment', '2022-07-12 16:30:00', 'karim', 'khoja'],
+    [4, 'TurboBot', 2, 10, 'Software update caused compatibility problems', '2022-11-22 15:20:00', 'karim', 'khoja'],
+    [5, 'MegaMech', 4, '', '', '', 'Jane', 'Smith'],
+    [6, 'RoboBot', 8, '', '', '', 'Ujjwal', 'Maken'],
+    [7, 'TurboBot', 7, '', '', '', 'Laksh', 'Agarwal']
   ],
 
   [
