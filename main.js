@@ -245,10 +245,8 @@ function getHint () {
   }
 }
 
-// Get the modal
 const modal = document.getElementById('hint-modal')
 
-// Get the <span> element that closes the modal
 const spanClose = document.getElementsByClassName('close')[0]
 
 // When the user clicks the button, open the modal
@@ -272,7 +270,6 @@ hintButton.onclick = function () {
   }
 }
 
-// When the user clicks on <span> (x), close the modal
 yesButton.onclick = function () {
   modal.style.display = 'none'
 }
@@ -289,7 +286,6 @@ okayButton.onclick = function () {
   modal.style.display = 'none'
 }
 
-// When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
   if (event.target === modal) {
     modal.style.display = 'none'
