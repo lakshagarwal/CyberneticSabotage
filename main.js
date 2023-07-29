@@ -249,7 +249,6 @@ const modal = document.getElementById('hint-modal')
 
 const spanClose = document.getElementsByClassName('close')[0]
 
-// When the user clicks the button, open the modal
 hintButton.onclick = function () {
   modal.style.display = 'block'
   yesButton.style.display = 'inline'
