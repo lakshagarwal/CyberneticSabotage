@@ -40,19 +40,19 @@ const queries = [
 storyline.textContent = queries[0]
 
 const hints = [
-  [['Hint : For your first hint for the 1st problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1: You can use the Select statement here.'], ['Hint 2: The structure of the query will look like SELECT _ FROM [TableName].']],
-  [['Hint : For your first hint for the 2nd problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1: You might want to look at the timestamp to find the most recent incident.'], ['Hint 2: Consider using the keyword LIMIT to get the most recent incident.']],
-  [['Hint : For your first hint for the 3rd problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1: Use a `JOIN` operation to join Robot and Incident Table.'], ['Hint 2: Use `GROUP BY` and `COUNT` operations to count the number of incidents.']],
-  [['Hint : For your first hint for the 4th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1: Use the lastUpdateOn column and specify dates to check the interval.'], ['Use `DISTINCT`operation to get unique robotIDs and then count accordingly.']],
-  [['Hint : For your first hint for the 5th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1: Use nested subqueries here.'], ['Hint 2: In the inner query get the employeeID of the employees who have updated those models from the Robot table.']],
-  [['Hint : For your first hint for the 6th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1: Use`UPDATE`and `SET`operations here.'], ['Hint 2: Do not forget to display the Robot table by using the same structure as in Query 1']],
-  [['Hint : For your first hint for the 7th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1: You need to use`GROUP BY` and `ORDER BY` operations here '], ['Hint 2: Do not forget to put the LIMIT as 1 to get only the one employee with the highest number of incidents']],
-  [['Hint : For your first hint for the 8th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 8'], ['Hint 2 for question 8']],
-  [['Hint : For your first hint for the 9th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 9'], ['Hint 2 for question 9']],
-  [['Hint : For your first hint for the 10th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 10'], ['Hint 2 for question 10']],
-  [['Hint : For your first hint for the 11th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 11'], ['Hint 2 for question 11']],
-  [['Hint : For your first hint for the 12th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 12'], ['Hint 2 for question 12']],
-  [['Hint : For your first hint for the 12th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 13'], ['Hint 2 for question 13']]
+  [['Hint 1: You can use the Select statement here.'], ['Hint 2: The structure of the query will look like SELECT _ FROM [TableName].']],
+  [['Hint 1: You might want to look at the timestamp to find the most recent incident.'], ['Hint 2: Consider using the keyword LIMIT to get the most recent incident.']],
+  [['Hint 1: Use a `JOIN` operation to join Robot and Incident Table.'], ['Hint 2: Use `GROUP BY` and `COUNT` operations to count the number of incidents.']],
+  [['Hint 1: Use the lastUpdateOn column and specify dates to check the interval.'], ['Use `DISTINCT`operation to get unique robotIDs and then count accordingly.']],
+  [['Hint 1: Use nested subqueries here.'], ['Hint 2: In the inner query get the employeeID of the employees who have updated those models from the Robot table.']],
+  [['Hint 1: Use`UPDATE`and `SET`operations here.'], ['Hint 2: Do not forget to display the Robot table by using the same structure as in Query 1']],
+  [['Hint 1: You need to use`GROUP BY` and `ORDER BY` operations here '], ['Hint 2: Do not forget to put the LIMIT as 1 to get only the one employee with the highest number of incidents']],
+  [['Hint 1 for question 8'], ['Hint 2 for question 8']],
+  [['Hint 1 for question 9'], ['Hint 2 for question 9']],
+  [['Hint 1 for question 10'], ['Hint 2 for question 10']],
+  [['Hint 1 for question 11'], ['Hint 2 for question 11']],
+  [['Hint 1 for question 12'], ['Hint 2 for question 12']],
+  [['Hint 1 for question 13'], ['Hint 2 for question 13']]
 ]
 
 hintContainer.textContent = hints[0][0]
@@ -225,10 +225,10 @@ function getHint () {
 
   if (hintCounter < subArrayLength) {
     const hint = hintArray[hintCounter]
-    hintLine.textContent = hint
+    storyline.textContent = hint
     hintCounter = hintCounter + 1
   } else {
-    hintLine.textContent = 'No more hints available.'
+    storyline.textContent = 'No more hints available.'
   }
 }
 
