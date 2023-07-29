@@ -5,7 +5,6 @@ const form = document.querySelector('#query-form')
 const restartButton = document.getElementById('restart-button')
 const storyline = document.getElementById('trinity-text')
 const hintLine = document.getElementById('hint-text')
-const hintLine = document.getElementById('hint-text')
 const hintButton = document.getElementById('hint-button')
 const yesButton = document.getElementById('yes')
 const noButton = document.getElementById('no')
@@ -20,8 +19,6 @@ let startTime = null
 let score = 0
 let progress = 10
 let flag = false
-let hintCounter = 0
-let subArrayLength
 let hintCounter = 0
 let subArrayLength
 
@@ -58,9 +55,7 @@ const hints = [
   [['Hint 1 for question 13'], ['Hint 2 for question 13']]
 ]
 
-
 hintContainer.textContent = hints[0][0]
-
 
 const answerKeys = [
   [
@@ -219,10 +214,6 @@ form.addEventListener('submit', function (event) {
   displayText.appendChild(queryWrapper)
   scrollToBottom()
 })
-
-const hintsCost = [30, 40, 50]
-
-yesButton.addEventListener('click', getHint)
 
 const hintsCost = [30, 40, 50]
 
