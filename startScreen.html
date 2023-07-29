@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: black;
+        color: lime;
+        font-family: "Courier New", Courier, monospace;
+        overflow: hidden;
+      }
+
+      #title {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3em;
+        font-weight: bold;
+        text-align: center;
+        animation: type 4s steps(30, end), fadein 2s;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 24ch;
+        margin: auto;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      #start-button {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 1.5em;
+        animation: blink 1s infinite, fadein 4s;
+        cursor: pointer;
+        transition: color 0.3s, transform 0.3s, background-color 0.3s;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      #start-button:hover {
+        color: white;
+        transform: translate(-50%, -50%) scale(1.2);
+        background-color: rgba(0, 255, 0, 0.6);
+      }
+
+      @keyframes type {
+        0% {
+          width: 0ch;
+        }
+        100% {
+          width: 24ch;
+        }
+      }
+
+      @keyframes fadein {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes blink {
+        50% {
+          color: transparent;
+        }
+      }
+
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+    <div id="title">Cybernetic Sabotage</div>
+    <div id="start-button" onclick="startGame()">&gt;_ START</div>
+    <script>
+      var canvas = document.querySelector("canvas")
+      var ctx = canvas.getContext("2d")
+
+      function resizeCanvas() {
+        canvas.height = window.innerHeight
+        canvas.width = window.innerWidth
+      }
+
+      window.addEventListener("resize", resizeCanvas)
+      resizeCanvas()
+
+      var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@$%&"
+      letters = letters.split("")
+
+      var fontSize = 14
+      var columns = canvas.width / fontSize
+
+      var drops = []
+      var speeds = []
+      for (var i = 0; i < columns; i++) {
+        drops[i] = 1
+        speeds[i] = Math.random() + 0.5
+      }
+
+      function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)"
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+        ctx.fillStyle = "rgba(0, 255, 0, 0.5)"
+        ctx.font = fontSize + "px arial"
+        for (var i = 0; i < drops.length; i++) {
+          var text = letters[Math.floor(Math.random() * letters.length)]
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize)
+
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0
+          }
+
+          drops[i] += speeds[i]
+        }
+      }
+
+      setInterval(draw, 33)
+
+      function startGame() {
+        alert("Game Started!")
+      }
+
+      document.addEventListener("keydown", function (event) {
+        startGame()
+        document.removeEventListener("keydown", arguments.callee)
+      })
+    </script>
+  </body>
+</html>
