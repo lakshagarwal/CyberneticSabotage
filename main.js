@@ -5,6 +5,7 @@ const form = document.querySelector('#query-form')
 const restartButton = document.getElementById('restart-button')
 const storyline = document.getElementById('trinity-text')
 const hintLine = document.getElementById('hint-text')
+const hintLine = document.getElementById('hint-text')
 const hintButton = document.getElementById('hint-button')
 const yesButton = document.getElementById('yes')
 const noButton = document.getElementById('no')
@@ -19,6 +20,8 @@ let startTime = null
 let score = 0
 let progress = 10
 let flag = false
+let hintCounter = 0
+let subArrayLength
 let hintCounter = 0
 let subArrayLength
 
@@ -55,7 +58,9 @@ const hints = [
   [['Hint 1 for question 13'], ['Hint 2 for question 13']]
 ]
 
+
 hintContainer.textContent = hints[0][0]
+
 
 const answerKeys = [
   [
@@ -142,7 +147,9 @@ function restartGame () {
   storyline.textContent = queries[0]
   currentQueryIndex = 0
   hintCounter = 0
+  hintCounter = 0
   hintContainer.textContent = hints[0][0]
+  hintLine.textContent = ''
   hintLine.textContent = ''
 }
 
@@ -217,9 +224,15 @@ const hintsCost = [30, 40, 50]
 
 yesButton.addEventListener('click', getHint)
 
+const hintsCost = [30, 40, 50]
+
+yesButton.addEventListener('click', getHint)
+
 function getHint () {
   const hintIndex = currentQueryIndex
   const hintArray = hints[hintIndex]
+  subArrayLength = hintArray.length
+  console.log('Sub array length = ' + subArrayLength)
   subArrayLength = hintArray.length
   console.log('Sub array length = ' + subArrayLength)
 
