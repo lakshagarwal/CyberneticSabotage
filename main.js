@@ -4,8 +4,12 @@ const displayText = document.querySelector('.display-text')
 const form = document.querySelector('#query-form')
 const restartButton = document.getElementById('restart-button')
 const storyline = document.getElementById('trinity-text')
+const hintLine = document.getElementById('hint-text')
 const hintButton = document.getElementById('hint-button')
-const hintContainer = document.getElementById('hint-text')
+const yesButton = document.getElementById('yes')
+const noButton = document.getElementById('no')
+const okayButton = document.getElementById('okay')
+const hintContainer = document.getElementById('modal-content')
 const progressBar = document.getElementById('progress-bar')
 const progressText = document.getElementById('progress-text')
 
@@ -15,7 +19,8 @@ let startTime = null
 let score = 0
 let progress = 10
 let flag = false
-let hintCounter = 1
+let hintCounter = 0
+let subArrayLength
 
 const queries = [
   ' Hey Detective! The first task is to list all incidents from the \'Incident\' table.',
@@ -49,7 +54,9 @@ const hints = [
   [['Hint : For your first hint for the 12th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 12'], ['Hint 2 for question 12']],
   [['Hint : For your first hint for the 12th problem, it\'s going to cost you 15 points. Click on the Hint button to use it'], ['Hint 1 for question 13'], ['Hint 2 for question 13']]
 ]
+
 hintContainer.textContent = hints[0][0]
+
 const answerKeys = [
   [
     [1, 'Robot malfunctioned during production', '2022-02-20 09:30:00', 'Jane Smith', 2],
@@ -134,8 +141,9 @@ function restartGame () {
   initializeDB()
   storyline.textContent = queries[0]
   currentQueryIndex = 0
-  hintCounter = 1
+  hintCounter = 0
   hintContainer.textContent = hints[0][0]
+  hintLine.textContent = ''
 }
 
 function startGame () {
@@ -152,9 +160,9 @@ function getStory () {
   if (flag === true && nextQueryIndex < queries.length) {
     const nextQuery = queries[nextQueryIndex]
     storyline.textContent = 'Excellent! Next, ' + nextQuery
+    hintLine.textContent = ''
+    hintCounter = 0
     currentQueryIndex = nextQueryIndex
-    hintCounter = 1
-    hintContainer.textContent = hints[currentQueryIndex][0]
     updateScore(10)
     updateProgressBar(8)
   } else {
@@ -205,18 +213,73 @@ form.addEventListener('submit', function (event) {
   scrollToBottom()
 })
 
-hintButton.addEventListener('click', getHint)
+const hintsCost = [30, 40, 50]
+
+yesButton.addEventListener('click', getHint)
+
 function getHint () {
   const hintIndex = currentQueryIndex
   const hintArray = hints[hintIndex]
-  const subArrayLength = hintArray.length
+  subArrayLength = hintArray.length
+  console.log('Sub array length = ' + subArrayLength)
 
   if (hintCounter < subArrayLength) {
     const hint = hintArray[hintCounter]
-    hintContainer.textContent = hint
+    hintLine.textContent = hint
     hintCounter = hintCounter + 1
   } else {
-    hintContainer.textContent = 'No more hints available.'
+    hintLine.textContent = 'No more hints available.'
+  }
+}
+
+// Get the modal
+const modal = document.getElementById('hint-modal')
+
+// Get the <span> element that closes the modal
+const spanClose = document.getElementsByClassName('close')[0]
+
+// When the user clicks the button, open the modal
+hintButton.onclick = function () {
+  modal.style.display = 'block'
+  yesButton.style.display = 'inline'
+  noButton.style.display = 'inline'
+  okayButton.style.display = 'none'
+  console.log('hint counter: ' + hintCounter + ' sub array length = ' + subArrayLength)
+  if (hintCounter !== subArrayLength) {
+    hintContainer.textContent = 'Hint : For hint # ' +
+  (hintCounter + 1) +
+  ' for this problem, it\'s going to cost you ' +
+  hintsCost[hintCounter] +
+  '. Click on the Hint button to use it'
+  } else {
+    yesButton.style.display = 'none'
+    noButton.style.display = 'none'
+    okayButton.style.display = 'inline'
+    hintContainer.textContent = 'Sorry! No more hints are availabe for this question.'
+  }
+}
+
+// When the user clicks on <span> (x), close the modal
+yesButton.onclick = function () {
+  modal.style.display = 'none'
+}
+
+noButton.onclick = function () {
+  modal.style.display = 'none'
+}
+
+spanClose.onclick = function () {
+  modal.style.display = 'none'
+}
+
+okayButton.onclick = function () {
+  modal.style.display = 'none'
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target === modal) {
+    modal.style.display = 'none'
   }
 }
 
