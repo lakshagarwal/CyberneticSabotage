@@ -26,7 +26,7 @@ body {
 
 .main-panel {
   display: inline-block;
-  width: 60%;
+  width: 67%;
   vertical-align: top;
   margin-right: 10px;
 }
@@ -54,7 +54,7 @@ body {
 }
 
 .display-text {
-  height: 60vh;
+  height: 70vh;
   padding-right: 15px;
   overflow-y: auto;
   scrollbar-width: thin;
@@ -130,24 +130,10 @@ body {
   width: 100%;
   padding: 8px;
   border: 1px solid var(--main-color);
+  font-size: 16px;
   border-radius: 5px;
   background-color: #000;
   color: var(--main-color);
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  flex-grow: 1;
-  margin: 8px 5px;
-}
-
-.modal-content button {
-  display: inline-flex;
-  padding: 8px;
-  border: 1px solid var(--main-color);
-  border-radius: 5px;
-  background-color: #000;
-  color: var(--main-color);
-  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   flex-grow: 1;
@@ -160,6 +146,21 @@ body {
 
 .modal-content button:hover {
   background-color: #1a1a1a;
+}
+
+.modal-content button {
+  display: inline-flex;
+  cursor: pointer;
+  margin: 8px 5px;
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+  background-color: #000;
+  flex-grow: 1;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 8px;
+  width: 100%;
 }
 
 .info-container {
@@ -272,11 +273,11 @@ tr:first-child > th {
   left: 25%;
   z-index: 1;
   width: 50%;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 40%);
 }
 
 .modal-content {
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   margin: auto;
   padding: 20px;
   border: 1px solid var(--main-color);
