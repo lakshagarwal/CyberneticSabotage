@@ -4,7 +4,6 @@ const displayText = document.querySelector('.display-text')
 const form = document.querySelector('#query-form')
 const restartButton = document.getElementById('restart-button')
 const storyline = document.getElementById('trinity-text')
-const hintLine = document.getElementById('hint-text')
 const hintButton = document.getElementById('hint-button')
 const yesButton = document.getElementById('yes')
 const noButton = document.getElementById('no')
@@ -142,10 +141,7 @@ function restartGame () {
   storyline.textContent = queries[0]
   currentQueryIndex = 0
   hintCounter = 0
-  hintCounter = 0
   hintContainer.textContent = hints[0][0]
-  hintLine.textContent = ''
-  hintLine.textContent = ''
 }
 
 function startGame () {
@@ -162,7 +158,6 @@ function getStory () {
   if (flag === true && nextQueryIndex < queries.length) {
     const nextQuery = queries[nextQueryIndex]
     storyline.textContent = 'Excellent! Next, ' + nextQuery
-    hintLine.textContent = ''
     hintCounter = 0
     currentQueryIndex = nextQueryIndex
     updateScore(10)
