@@ -232,12 +232,10 @@ td {
 }
 
 td:nth-child(1) {
-  width: 18%;
   text-align: center;
 }
 
 td:nth-child(2) {
-  width: 80%;
   border-left: 1px solid var(--main-color);
 }
 
@@ -269,24 +267,20 @@ tr:first-child > th {
 
 .modal {
   display: none;
-  position: fixed;
+  position: absolute;
+  top: 25%;
+  left: 25%;
   z-index: 1;
-  padding-top: 100px;
-  padding-left: 200px;
-  left: 0;
-  top: 0;
-  width: 75%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
+  width: 50%;
+  background-color: rgba(0, 0, 0, 40%);
 }
 
 .modal-content {
   background-color: rgb(0, 0, 0);
   margin: auto;
-  padding: 20px;
+  padding: 20px; 
   border: 1px solid var(--main-color);
-  width: 80%;
+  width: 100%;
 }
 
 .close {
