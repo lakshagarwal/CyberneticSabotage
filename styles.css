@@ -272,7 +272,7 @@ tr:first-child > th {
   left: 25%;
   z-index: 1;
   width: 50%;
-  a { color: rgb(0 0 0 / 40%) };
+  a { color: rgb(0 0 0 / 40%); }
 }
 
 .modal-content {
