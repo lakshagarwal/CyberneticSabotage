@@ -23,13 +23,13 @@ function typeText (sceneIndex) {
     } else {
       clearInterval(interval)
       if (sceneIndex === scenes.length - 1) {
-        document.getElementById('startButton').disabled = false
+        document.getElementById('begin-button').disabled = false
       }
     }
   }, 75)
 }
 
-document.getElementById('startButton').addEventListener('click', beginGame)
+document.getElementById('begin-button').addEventListener('click', beginGame)
 
 function nextScene () {
   if (currentScene === scenes.length - 1) return
