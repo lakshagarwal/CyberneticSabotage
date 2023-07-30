@@ -120,12 +120,13 @@ body {
 
 .side-panel {
   display: inline-block;
-  width: 32%;
+  width: 39%;
   background-color: black;
   text-align: center;
 }
 
-.side-panel button {
+.side-panel,
+.modal-content button {
   display: block;
   width: 100%;
   padding: 8px;
@@ -140,24 +141,7 @@ body {
   margin: 8px 5px;
 }
 
-.modal-content button {
-  display: inline-flex;
-  padding: 8px;
-  border: 1px solid var(--main-color);
-  border-radius: 5px;
-  background-color: #000;
-  color: var(--main-color);
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  flex-grow: 1;
-  margin: 8px 5px;
-}
-
-.side-panel button:hover {
-  background-color: #1a1a1a;
-}
-
+.side-panel,
 .modal-content button:hover {
   background-color: #1a1a1a;
 }
@@ -272,7 +256,9 @@ tr:first-child > th {
   left: 25%;
   z-index: 1;
   width: 50%;
-  a { color: rgb(0 0 0 / 40%); }
+  a {
+    color: rgb(0 0 0 / 40%);
+  }
 }
 
 .modal-content {
