@@ -272,11 +272,11 @@ tr:first-child > th {
   left: 25%;
   z-index: 1;
   width: 50%;
-  a { color: rgb(0 0 0 / 0.4) }
+  a { color: rgb(0 0 0 / 40%) };
 }
 
 .modal-content {
-  background-color: rgb(0, 0, 0);
+  color: rgb(0 0 0 / 40%);
   margin: auto;
   padding: 20px;
   border: 1px solid var(--main-color);
