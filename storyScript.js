@@ -90,6 +90,10 @@ function beginGame () {
             setTimeout(() => {
               newFadeToBlackDiv.style.opacity = '0'
             }, 1000)
+
+            setTimeout(() => {
+              newFadeToBlackDiv.style.visibility = 'hidden'
+            }, 2000)
           }
         }
       })
