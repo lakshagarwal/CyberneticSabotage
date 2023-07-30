@@ -2,110 +2,144 @@
 <html>
   <head>
     <title>Cybernetic Sabotage</title>
-    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        background-color: black;
+        color: lime;
+        font-family: "Courier New", Courier, monospace;
+        overflow: hidden;
+      }
+
+      #title {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3em;
+        font-weight: bold;
+        text-align: center;
+        animation: type 4s steps(30, end), fadein 2s;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 24ch;
+        margin: auto;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      #start-button {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 1.5em;
+        animation: blink 1.5s infinite, fadein 4s;
+        cursor: pointer;
+        transition: color 0.3s, transform 0.3s, background-color 0.3s;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      #start-button:hover {
+        color: white;
+        transform: translate(-50%, -50%) scale(1.2);
+        background-color: rgba(0, 255, 0, 0.6);
+      }
+
+      @keyframes type {
+        0% {
+          width: 0ch;
+        }
+        100% {
+          width: 24ch;
+        }
+      }
+
+      @keyframes fadein {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes blink {
+        50% {
+          color: transparent;
+        }
+      }
+
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
   </head>
-
   <body>
-    <div class="container">
-      <div class="main-panel">
-        <div class="main-panel-container">
-          <div class="main-panel-content">
-            <div class="display-text"></div>
-          </div>
+    <canvas></canvas>
+    <div id="title">Cybernetic Sabotage</div>
+    <div id="start-button" onclick="startGame()">&gt;_ START</div>
+    <script>
+      var canvas = document.querySelector("canvas")
+      var ctx = canvas.getContext("2d")
 
-          <div class="input-box">
-            <form id="query-form">
-              <div class="input-container">
-                <textarea
-                  id="query-textarea"
-                  rows="8"
-                  placeholder="Enter your SQL query here"
-                ></textarea>
-                <button type="submit" id="submit-button">Submit</button>
-              </div>
-            </form>
-          </div>
-          <div class="hint-container">
-          </div>
-        </div>
-      </div>
+      function resizeCanvas() {
+        canvas.height = window.innerHeight
+        canvas.width = window.innerWidth
+      }
 
-      <!-- The Modal -->
-      <div id="hint-modal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <p id="modal-content">Some text in the Modal..</p>
-          <button id="yes">Yes</button>
-          <button id="no">No</button>
-          <button id="okay">Okay</button>
-        </div>
-      </div>
+      window.addEventListener("resize", resizeCanvas)
+      resizeCanvas()
 
-      <div class="side-panel">
-        <div class="side-panel-content">
-          <h2>Cybernetic Sabotage</h2>
+      var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@$%&"
+      letters = letters.split("")
 
-          <div class="button-container">
-            <button id="restart-button">Restart</button>
-            <button type="hint" id="hint-button">Hint</button>
-            <button>Settings</button>
-          </div>
+      var fontSize = 11
+      var columns = canvas.width / fontSize
 
-          <div class="info-container">
-            <div id="timer">Time: 0s</div>
-            <div id="score">Score: 0</div>
-          </div>
+      var drops = []
+      var speeds = []
+      for (var i = 0; i < columns; i++) {
+        drops[i] = 1
+        speeds[i] = Math.random() + 0.5
+      }
 
-          <div class="progress-container">
-            <span>Progress</span>
-            <div id="progress-bar-container">
-              <div id="progress-bar">
-                <span id="progress-text"></span>
-              </div>
-            </div>
-          </div>
+      function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)"
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-          <table>
-            <tr>
-              <th colspan="2">Database Schema</th>
-            </tr>
-            <tr>
-              <td>Employees</td>
-              <td>EmployeeID, Name, Job Role, Division, Last Login Time</td>
-            </tr>
-            <tr>
-              <td>Robots</td>
-              <td>
-                RobotID, Model, Manufacturing Date, Status, Update Date, Last
-                Updated By
-              </td>
-            </tr>
-            <tr>
-              <td>Logs</td>
-              <td>
-                LogID, EmployeeID, Action Description, Timestamp, Robot ID
-              </td>
-            </tr>
-            <tr>
-              <td>Incidents</td>
-              <td>IncidentID, Description, Timestamp, RobotID, Reported By</td>
-            </tr>
-            <tr>
-              <td>Access_Codes</td>
-              <td>Access Code, EmployeeID, Access Level, Last Access</td>
-            </tr>
-          </table>
+        ctx.fillStyle = "rgba(0, 255, 0, 0.3)"
+        ctx.font = fontSize + "px arial"
+        for (var i = 0; i < drops.length; i++) {
+          var text = letters[Math.floor(Math.random() * letters.length)]
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize)
 
-          <div class="inner-box-side">
-            <h3>Trinity</h3>
-            <p id="trinity-text">Trinity Speech Text</p>
-          </div>
-        </div>
-      </div>
-    </div>
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0
+          }
 
-    <script src="sql-wasm.js"></script>
-    <script src="main.js"></script>
+          drops[i] += speeds[i]
+        }
+      }
+
+      setInterval(draw, 33)
+
+      function startGame() {
+        fetch("storyScreen.html")
+          .then(response => response.text())
+          .then(data => {
+            document.body.innerHTML = data
+            const script = document.createElement("script")
+            script.src = "storyScript.js"
+            document.body.appendChild(script)
+          })
+          .catch(error => console.error("Error:", error))
+      }
+    </script>
   </body>
 </html>

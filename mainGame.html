@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cybernetic Sabotage</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="main-panel">
+        <div class="main-panel-container">
+          <div class="main-panel-content">
+            <div class="display-text"></div>
+          </div>
+
+          <div class="input-box">
+            <form id="query-form">
+              <div class="input-container">
+                <textarea
+                  id="query-textarea"
+                  rows="8"
+                  placeholder="Enter your SQL query here"
+                ></textarea>
+                <button type="submit" id="submit-button">Submit</button>
+              </div>
+            </form>
+          </div>
+          <div class="hint-container">
+          </div>
+        </div>
+      </div>
+
+      <!-- The Modal -->
+      <div id="hint-modal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p id="modal-content">Some text in the Modal..</p>
+          <button id="yes">Yes</button>
+          <button id="no">No</button>
+          <button id="okay">Okay</button>
+        </div>
+      </div>
+
+      <div class="side-panel">
+        <div class="side-panel-content">
+          <h2>Cybernetic Sabotage</h2>
+
+          <div class="button-container">
+            <button id="restart-button">Restart</button>
+            <button type="hint" id="hint-button">Hint</button>
+            <button>Settings</button>
+          </div>
+
+          <div class="info-container">
+            <div id="timer">Time: 0s</div>
+            <div id="score">Score: 0</div>
+          </div>
+
+          <div class="progress-container">
+            <span>Progress</span>
+            <div id="progress-bar-container">
+              <div id="progress-bar">
+                <span id="progress-text"></span>
+              </div>
+            </div>
+          </div>
+
+          <table>
+            <tr>
+              <th colspan="2">Database Schema</th>
+            </tr>
+            <tr>
+              <td>Employees</td>
+              <td>EmployeeID, Name, Job Role, Division, Last Login Time</td>
+            </tr>
+            <tr>
+              <td>Robots</td>
+              <td>
+                RobotID, Model, Manufacturing Date, Status, Update Date, Last
+                Updated By
+              </td>
+            </tr>
+            <tr>
+              <td>Logs</td>
+              <td>
+                LogID, EmployeeID, Action Description, Timestamp, Robot ID
+              </td>
+            </tr>
+            <tr>
+              <td>Incidents</td>
+              <td>IncidentID, Description, Timestamp, RobotID, Reported By</td>
+            </tr>
+            <tr>
+              <td>Access_Codes</td>
+              <td>Access Code, EmployeeID, Access Level, Last Access</td>
+            </tr>
+          </table>
+
+          <div class="inner-box-side">
+            <h3>Trinity</h3>
+            <p id="trinity-text">Trinity Speech Text</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="sql-wasm.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
