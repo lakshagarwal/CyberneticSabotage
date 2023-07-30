@@ -59,26 +59,50 @@
         top: 0;
         left: 0;
       }
+
+      #fade-to-black {
+        opacity: 0;
+        transition: opacity 2s;
+      }
     </style>
   </head>
   <body>
     <canvas></canvas>
+
     <div class="scene" id="scene1">
       <h1>Your Mission</h1>
       <p></p>
     </div>
+
     <div class="scene" id="scene2">
       <h1>The Training</h1>
       <p></p>
     </div>
+
     <div class="scene" id="scene3">
       <h1>The Challenge</h1>
       <p></p>
     </div>
+
     <div class="scene" id="scene4">
       <h1>Are you ready?</h1>
       <button id="begin-button">Begin</button>
     </div>
+
+    <div
+      id="fade-to-black"
+      style="
+        background: black;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        visibility: hidden;
+      "
+    ></div>
+
     <script src="storyScript.js" type="text/javascript"></script>
   </body>
 </html>
