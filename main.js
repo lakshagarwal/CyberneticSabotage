@@ -39,13 +39,13 @@ const queries = [
 storyline.textContent = queries[0]
 
 const hints = [
-  [['Hint 1: You can use the Select statement here.'], ['Hint 2: The structure of the query will look like SELECT _ FROM [TableName].']],
-  [['Hint 1: You might want to look at the timestamp to find the most recent incident.'], ['Hint 2: Consider using the keyword LIMIT to get the most recent incident.']],
-  [['Hint 1: Use a `JOIN` operation to join Robot and Incident Table.'], ['Hint 2: Use `GROUP BY` and `COUNT` operations to count the number of incidents.']],
-  [['Hint 1: Use the lastUpdateOn column and specify dates to check the interval.'], ['Use `DISTINCT`operation to get unique robotIDs and then count accordingly.']],
-  [['Hint 1: Use nested subqueries here.'], ['Hint 2: In the inner query get the employeeID of the employees who have updated those models from the Robot table.']],
-  [['Hint 1: Use`UPDATE`and `SET`operations here.'], ['Hint 2: Do not forget to display the Robot table by using the same structure as in Query 1']],
-  [['Hint 1: You need to use`GROUP BY` and `ORDER BY` operations here '], ['Hint 2: Do not forget to put the LIMIT as 1 to get only the one employee with the highest number of incidents']],
+  [['To list all the incidents from the \'Incident\' table, your first hint would be to use the select statement here.'], ['Next you can try following the structure of the query in the form of SELECT _ FROM [TableName] to get all the incidents from the \'Incident\' table. ']],
+  [['Look for the most recent incident by considering the timestamp. Try using the LIMIT keyword.'], ['You can also consider ordering the timestamp in a descending order to find the most recent incident.']],
+  [['In order to count the number of incidents for these robot models, firsty use the `LEFT JOIN` operation to combine the \'Robot\' and \'Incident\' tables.'], ['Now, try using the `GROUP BY` operation to group the related models and count incidents accordingly for these robot models.']],
+  [['To determine the number of robots updated in the past week, focus on the lastUpdateOn column. Specify the date range using appropriate conditions to check the interval.'], ['To get accurate results, consider using the `DISTINCT` operation to count unique robotIDs that have been updated within the specified date range of the past week.']],
+  [['Use a subquery to retrieve employee IDs of those who recently updated robots.'], ['Then, filter the employees details using the obtained IDs with the `IN` keyword to get the full name and unique IDs of employees who updated recently.']],
+  [['To mark the most recently updated robots as `Under Repair`, use the `UPDATE` statement. Set the `status` column to `Under Repair` for robots that were last updated within a specific date range.'], [' After marking the most recently updated robots as "under repair", do not forget to display the Robot table by using the same structure as in Query 1']],
+  [['To find the employee with the highest number of incidents, use the Robot table. Consider using the `COUNT` function along with the `GROUP BY` clause to count the number of incidents reported by each employee.'], ['Next order the results in descending order using the `ORDER BY` clause to get employee with the most incidents at the top of the table'], ['Additionally, use the LIMIT keyword to fetch only the employee with the highest number of incidents.']],
   [['Hint 1 for question 8'], ['Hint 2 for question 8']],
   [['Hint 1 for question 9'], ['Hint 2 for question 9']],
   [['Hint 1 for question 10'], ['Hint 2 for question 10']],
@@ -182,7 +182,6 @@ function updateScore (change) {
 
 function updateProgressBar (change) {
   progress = Math.min(progress + change, 100)
-  progress = progress + change
   progressBar.style.width = progress + '%'
   progressText.innerText = progress + '%'
 }
