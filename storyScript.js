@@ -13,6 +13,7 @@ const sceneText = [
 function typeText (sceneIndex) {
   const text = sceneText[sceneIndex]
   const p = scenes[sceneIndex].querySelector('p')
+  if (!p) return
   p.textContent = ''
   let i = 0
   interval = setInterval(() => {
@@ -21,9 +22,14 @@ function typeText (sceneIndex) {
       i++
     } else {
       clearInterval(interval)
+      if (sceneIndex === scenes.length - 1) {
+        document.getElementById('startButton').disabled = false
+      }
     }
   }, 75)
 }
+
+document.getElementById('startButton').addEventListener('click', beginGame)
 
 function nextScene () {
   if (currentScene === scenes.length - 1) return
@@ -48,15 +54,20 @@ window.addEventListener('keydown', event => {
   if (event.key === 'ArrowLeft') previousScene()
 })
 
-// eslint-disable-next-line no-unused-vars
 function beginGame () {
+  if (currentScene !== scenes.length - 1) return
   fetch('mainGame.html')
     .then(response => response.text())
     .then(data => {
       document.body.innerHTML = data
-      const script = document.createElement('script')
-      script.src = 'main.js'
-      document.body.appendChild(script)
+      const SQLscript = document.createElement('script')
+      SQLscript.src = 'sql-wasm.js'
+      document.body.appendChild(SQLscript)
+      SQLscript.onload = () => {
+        const script = document.createElement('script')
+        script.src = 'main.js'
+        document.body.appendChild(script)
+      }
     })
     .catch(error => console.error('Error:', error))
 }
