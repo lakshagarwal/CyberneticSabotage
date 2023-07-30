@@ -56,20 +56,45 @@ window.addEventListener('keydown', event => {
 
 function beginGame () {
   if (currentScene !== scenes.length - 1) return
-  fetch('mainGame.html')
-    .then(response => response.text())
-    .then(data => {
-      document.body.innerHTML = data
-      const SQLscript = document.createElement('script')
-      SQLscript.src = 'sql-wasm.js'
-      document.body.appendChild(SQLscript)
-      SQLscript.onload = () => {
-        const script = document.createElement('script')
-        script.src = 'main.js'
-        document.body.appendChild(script)
-      }
-    })
-    .catch(error => console.error('Error:', error))
+  const fadeToBlackDiv = document.getElementById('fade-to-black')
+  fadeToBlackDiv.style.visibility = 'visible'
+  fadeToBlackDiv.style.opacity = 1
+
+  setTimeout(() => {
+    fetch('mainGame.html')
+      .then(response => response.text())
+      .then(data => {
+        document.body.innerHTML = data
+
+        const SQLscript = document.createElement('script')
+        SQLscript.src = 'sql-wasm.js'
+        document.body.appendChild(SQLscript)
+        SQLscript.onload = () => {
+          const script = document.createElement('script')
+          script.src = 'main.js'
+          document.body.appendChild(script)
+          script.onload = () => {
+            const newFadeToBlackDiv = document.createElement('div')
+            newFadeToBlackDiv.id = 'fade-to-black'
+            newFadeToBlackDiv.style.position = 'fixed'
+            newFadeToBlackDiv.style.top = '0'
+            newFadeToBlackDiv.style.left = '0'
+            newFadeToBlackDiv.style.width = '100%'
+            newFadeToBlackDiv.style.height = '100%'
+            newFadeToBlackDiv.style.backgroundColor = 'black'
+            newFadeToBlackDiv.style.transition = 'opacity 1s'
+            newFadeToBlackDiv.style.visibility = 'visible'
+            newFadeToBlackDiv.style.opacity = '1'
+            document.body.appendChild(newFadeToBlackDiv)
+
+            setTimeout(() => {
+              newFadeToBlackDiv.style.opacity = '0'
+            }, 1000)
+          }
+        }
+      })
+      .catch(error => console.error('Error:', error))
+  }, 1000)
 }
 
 const canvasStory = document.querySelector('canvas')
