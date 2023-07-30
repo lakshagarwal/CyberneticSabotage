@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cybernetic Sabotage</title>
+    <style>
+      body {
+        background-color: black;
+        color: lime;
+        font-family: "Courier New", Courier, monospace;
+        overflow: hidden;
+      }
+
+      .scene {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+        height: 70%;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 2s;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .scene.active {
+        opacity: 1;
+      }
+
+      button {
+        color: lime;
+        background-color: black;
+        border: solid lime 2px;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 1.5em;
+        cursor: pointer;
+        transition: color 0.3s, transform 0.3s;
+      }
+
+      button:hover {
+        color: lime;
+        transform: scale(1.2);
+      }
+
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+    <div class="scene" id="scene1">
+      <h1>Your Mission</h1>
+      <p></p>
+    </div>
+    <div class="scene" id="scene2">
+      <h1>The Training</h1>
+      <p></p>
+    </div>
+    <div class="scene" id="scene3">
+      <h1>The Challenge</h1>
+      <p></p>
+    </div>
+    <div class="scene" id="scene4">
+      <h1>Are you ready?</h1>
+      <button onclick="beginGame()">Begin</button>
+    </div>
+    <script src="storyScript.js" type="text/javascript"></script>
+  </body>
+</html>
