@@ -130,22 +130,14 @@ body {
   width: 100%;
   padding: 8px;
   border: 1px solid var(--main-color);
-  font-size: 16px;
   border-radius: 5px;
   background-color: #000;
   color: var(--main-color);
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   flex-grow: 1;
   margin: 8px 5px;
-}
-
-.side-panel button:hover {
-  background-color: #1a1a1a;
-}
-
-.modal-content button:hover {
-  background-color: #1a1a1a;
 }
 
 .modal-content button {
@@ -155,12 +147,19 @@ body {
   border: 1px solid var(--main-color);
   color: var(--main-color);
   background-color: #000;
-  flex-grow: 1;
   font-size: 16px;
+  flex-grow: 1;
   font-weight: bold;
   border-radius: 5px;
   padding: 8px;
-  width: 100%;
+}
+
+.side-panel button:hover {
+  background-color: #1a1a1a;
+}
+
+.modal-content button:hover {
+  background-color: #1a1a1a;
 }
 
 .info-container {
@@ -273,11 +272,11 @@ tr:first-child > th {
   left: 25%;
   z-index: 1;
   width: 50%;
-  background-color: rgba(0, 0, 0, 40%);
+  background-color: black;
 }
 
 .modal-content {
-  background-color: rgb(0, 0, 0);
+  background-color: black;
   margin: auto;
   padding: 20px;
   border: 1px solid var(--main-color);
