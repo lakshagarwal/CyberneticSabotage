@@ -26,7 +26,7 @@ body {
 
 .main-panel {
   display: inline-block;
-  width: 67%;
+  width: 60%;
   vertical-align: top;
   margin-right: 10px;
 }
@@ -75,11 +75,6 @@ body {
   border-radius: 5px;
 }
 
-.hint-container {
-  border: 1px solid var(--main-color);
-  margin-top: auto;
-}
-
 .input-box textarea {
   width: 100%;
   height: 100%;
@@ -125,12 +120,13 @@ body {
 
 .side-panel {
   display: inline-block;
-  width: 32%;
+  width: 39%;
   background-color: black;
   text-align: center;
 }
 
-.side-panel button {
+.side-panel,
+.modal-content button {
   display: block;
   width: 100%;
   padding: 8px;
@@ -141,14 +137,12 @@ body {
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-}
-
-.button-container button {
   flex-grow: 1;
   margin: 8px 5px;
 }
 
-.side-panel button:hover {
+.side-panel,
+.modal-content button:hover {
   background-color: #1a1a1a;
 }
 
@@ -222,12 +216,10 @@ td {
 }
 
 td:nth-child(1) {
-  width: 18%;
   text-align: center;
 }
 
 td:nth-child(2) {
-  width: 80%;
   border-left: 1px solid var(--main-color);
 }
 
@@ -255,4 +247,36 @@ tr:first-child > th {
 .inner-box-side {
   width: 99.9%;
   height: 20%;
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  z-index: 1;
+  width: 50%;
+  color: rgb(0 0 0 / 40%);
+}
+
+.modal-content {
+  color: rgb(0 0 0 / 40%);
+  margin: auto;
+  padding: 20px;
+  border: 1px solid var(--main-color);
+  width: 100%;
+}
+
+.close {
+  color: var(--main-color);
+  float: right;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  background-color: #1a1a1a;
+  text-decoration: none;
+  cursor: pointer;
 }
