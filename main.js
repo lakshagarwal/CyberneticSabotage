@@ -160,7 +160,7 @@ function getStory () {
     storyline.textContent = 'Excellent! Next, ' + nextQuery
     hintCounter = 0
     currentQueryIndex = nextQueryIndex
-    updateScore(10)
+    updateScore(100)
     updateProgressBar(8)
   } else {
     const currentQuery = queries[currentQueryIndex]
@@ -197,7 +197,7 @@ form.addEventListener('submit', function (event) {
   const queryWrapper = document.createElement('div')
 
   const queryParagraph = document.createElement('p')
-  queryParagraph.textContent = 'Query ' + (queryHistory.length) + ': ' + query
+  queryParagraph.textContent = query
   queryWrapper.appendChild(queryParagraph)
 
   textarea.value = ''
@@ -209,24 +209,16 @@ form.addEventListener('submit', function (event) {
   scrollToBottom()
 })
 
-const hintsCost = [30, 40, 50]
-
-yesButton.addEventListener('click', getHint)
-
 function getHint () {
   const hintIndex = currentQueryIndex
   const hintArray = hints[hintIndex]
   subArrayLength = hintArray.length
-  console.log('Sub array length = ' + subArrayLength)
-  subArrayLength = hintArray.length
-  console.log('Sub array length = ' + subArrayLength)
 
   if (hintCounter < subArrayLength) {
     const hint = hintArray[hintCounter]
     storyline.textContent = hint
     hintCounter = hintCounter + 1
-  } else {
-    storyline.textContent = 'No more hints available.'
+    updateScore(-50)
   }
 }
 
@@ -239,13 +231,10 @@ hintButton.onclick = function () {
   yesButton.style.display = 'inline'
   noButton.style.display = 'inline'
   okayButton.style.display = 'none'
-  console.log('hint counter: ' + hintCounter + ' sub array length = ' + subArrayLength)
   if (hintCounter !== subArrayLength) {
     hintContainer.textContent = 'Hint : For hint # ' +
   (hintCounter + 1) +
-  ' for this problem, it\'s going to cost you ' +
-  hintsCost[hintCounter] +
-  '. Click on the Hint button to use it'
+  ' for this problem, it\'s going to cost you 50 points. Click on the Hint button to use it'
   } else {
     yesButton.style.display = 'none'
     noButton.style.display = 'none'
@@ -256,6 +245,7 @@ hintButton.onclick = function () {
 
 yesButton.onclick = function () {
   modal.style.display = 'none'
+  getHint()
 }
 
 noButton.onclick = function () {
