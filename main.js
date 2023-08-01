@@ -15,7 +15,7 @@ const progressText = document.getElementById('progress-text')
 let queryHistory = []
 let currentQueryIndex = 0
 let startTime = null
-let score = 0
+let score = 150
 let progress = 10
 let flag = false
 let hintCounter = 0
@@ -126,13 +126,15 @@ const answerKeys = [
     ['TurboBot']
   ]
 ]
+
+const hintPoints = [40, 60, 80]
 let db
 
 function restartGame () {
   queryHistory = []
   displayText.innerHTML = ''
   startTime = Date.now()
-  score = 0
+  score = 150
   progress = 10
   updateTimer()
   updateScore(0)
@@ -146,7 +148,7 @@ function restartGame () {
 
 function startGame () {
   startTime = Date.now()
-  score = 0
+  score = 150
   progress = 10
   setInterval(updateTimer, 1000)
   initializeDB()
@@ -217,8 +219,8 @@ function getHint () {
   if (hintCounter < subArrayLength) {
     const hint = hintArray[hintCounter]
     storyline.textContent = hint
+    updateScore(-hintPoints[hintCounter])
     hintCounter = hintCounter + 1
-    updateScore(-50)
   }
 }
 
@@ -234,7 +236,9 @@ hintButton.onclick = function () {
   if (hintCounter !== subArrayLength) {
     hintContainer.textContent = 'Hint : For hint # ' +
   (hintCounter + 1) +
-  ' for this problem, it\'s going to cost you 50 points. Click on the Hint button to use it'
+  ' for this problem, it\'s going to cost you ' +
+   hintPoints[hintCounter] +
+   ' points. Click "Yes" to use it or "No" to cancel'
   } else {
     yesButton.style.display = 'none'
     noButton.style.display = 'none'
