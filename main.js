@@ -29,12 +29,11 @@ const queries = [
   ' Find out which all employees have updated these robots recently.',
   ' Mark the most recently updated robots as "under repair" in the database and display the robot table.',
   ' Identify the employee who reported the highest number of incidents.',
-  ' Create a view that joins the \'Incident\' and \'Robot\' table to see all incidents associated with each robot model.',
-  ' Identify the source of the malfunctions by finding models of robots that have more than a certain number of incidents and removing the duplicate entries.',
-  ' Create a new table that records the repair status of all robots.',
-  ' Insert/update repair records for all MegaMech and TurboBot robots into the new table.',
-  ' Find the last employee who updated the software of the malfunctioning robots.',
-  ' Gather all evidence against the one who caused the corporate espionage.'
+  ' Create a view that joins the \'Incident\' and \'Robot\' table to see all incidents associated with each robot model. Display the view.',
+  ' Identify the source of the malfunctions by finding models of robots that have more than 2 incidents.',
+  ' Create a new table called \'Repair\'  with columns repairID (INTEGER), repairStatus(TEXT), desc (TEXT), robotID (TEXT) and repairedById (TEXT)',
+  ' Insert repair records for the table in this row form :(1, \'Under Repair\', \'This robot model is undergoing repair due to its defaulty patterns\', 5 , 7).',
+  ' Find the last employee who updated the software of the malfunctioning robots.'
 ]
 storyline.textContent = queries[0]
 
@@ -46,12 +45,11 @@ const hints = [
   [['Use a subquery to retrieve employee IDs of those who recently updated robots.'], ['Then, filter the employees details using the obtained IDs with the `IN` keyword to get the full name and unique IDs of employees who updated recently.']],
   [['To mark the most recently updated robots as `Under Repair`, use the `UPDATE` statement. Set the `status` column to `Under Repair` for robots that were last updated within a specific date range.'], [' After marking the most recently updated robots as "under repair", do not forget to display the Robot table by using the same structure as in Query 1']],
   [['To find the employee with the highest number of incidents, use the Robot table. Consider using the `COUNT` function along with the `GROUP BY` clause to count the number of incidents reported by each employee.'], ['Next order the results in descending order using the `ORDER BY` clause to get employee with the most incidents at the top of the table'], ['Additionally, use the LIMIT keyword to fetch only the employee with the highest number of incidents.']],
-  [['Hint 1 for question 8'], ['Hint 2 for question 8']],
-  [['Hint 1 for question 9'], ['Hint 2 for question 9']],
-  [['Hint 1 for question 10'], ['Hint 2 for question 10']],
-  [['Hint 1 for question 11'], ['Hint 2 for question 11']],
-  [['Hint 1 for question 12'], ['Hint 2 for question 12']],
-  [['Hint 1 for question 13'], ['Hint 2 for question 13']]
+  [['Ensure to use the  `JOIN` condition to link the `Robot` and `Incident` tables based on their common column.'], ['Do not forget to include a `JOIN` with the `Employee` table to retrieve the first name and last name of the employee who last updated the robot and then display the view.']],
+  [['To identify the source of malfunctions, use a subquery to count the number of incidents for each robot model.'], ['Now, filter the robot models with more than 2 incidents using the HAVING clause in the subquery to get the source of malfunctions.']],
+  [['Use the `CREATE TABLE` syntax to create the desired  \'Repair\' table'], ['Remember to clearly define the types for the columns of \'Repair\' table as specified.']],
+  [['Use INSERT INTO to add a repair record. Fill in the values for repairID, repairStatus, desc, robotID, and repairedById correctly.'], ['Use\'VALUES\' opersation to insert the following values :(1, \'Under Repair\', \'This robot model is undergoing repair due to its defaulty patterns\', 5 , 7) in the \'Repair\' table ']],
+  [['You can use the `JOIN` operation to combine information from the Employee and log tables based on the appropriate columns first'], ['To find the last employee who updated the software of the malfunctioning robots, create a subquery to find the latest update timestamp for each robot using MAX()'], ['Lastly, JOIN the results with Employee and Robot tables using appropriate ON clauses to get the last updating employee\'s\' details']]
 ]
 
 hintContainer.textContent = hints[0][0]
@@ -72,7 +70,6 @@ const answerKeys = [
   [
     [10, 'Software update caused compatibility problems', '2022-11-22 15:20:00', 'Olivia Robinson', 4]
   ],
-
   [
     ['CyberHelper', 2],
     ['MegaMech', 3],
@@ -104,26 +101,31 @@ const answerKeys = [
   [
     [4, 2]
   ],
-
   [
-    [1, 'RoboBot 2000', 6, 7, 'Communication failure with central control system', '2022-08-18 09:45:00', 'Emily', 'Davis'],
-    [1, 'RoboBot 2000', 6, 3, 'Software glitch caused erratic behavior', '2022-04-05 10:15:00', 'Emily', 'Davis'],
-    [2, 'MegaMech', 3, 5, 'Component failure resulted in production delay', '2022-06-25 11:00:00', 'John', 'Doe'],
-    [2, 'MegaMech', 3, 9, 'Overheating issue caused temporary shutdown', '2022-10-30 10:10:00', 'John', 'Doe'],
-    [2, 'MegaMech', 3, 1, 'Robot malfunctioned during production', '2022-02-20 09:30:00', 'John', 'Doe'],
-    [3, 'CyberHelper', 4, 4, 'Power outage interrupted production process', '2022-05-10 14:20:00', 'Jane', 'Smith'],
-    [3, 'CyberHelper', 4, 8, 'Sensor calibration error led to incorrect measurements', '2022-09-27 13:00:00', 'Jane', 'Smith'],
-    [4, 'TurboBot', 2, 2, 'Collision with another robot', '2022-03-15 13:45:00', 'karim', 'khoja'],
-    [4, 'TurboBot', 2, 6, 'Robot arm malfunctioned, causing damage to equipment', '2022-07-12 16:30:00', 'karim', 'khoja'],
-    [4, 'TurboBot', 2, 10, 'Software update caused compatibility problems', '2022-11-22 15:20:00', 'karim', 'khoja'],
-    [5, 'MegaMech', 4, '', '', '', 'Jane', 'Smith'],
-    [6, 'RoboBot', 8, '', '', '', 'Ujjwal', 'Maken'],
-    [7, 'TurboBot', 7, '', '', '', 'Laksh', 'Agarwal']
+    [2, 'MegaMech', '3', 1, 'Robot malfunctioned during production', '2022-02-20 09:30:00', 'John', 'Doe'],
+    [4, 'TurboBot', '2', 2, 'Collision with another robot', '2022-03-15 13:45:00', 'karim', 'khoja'],
+    [1, 'RoboBot 2000', '6', 3, 'Software glitch caused erratic behavior', '2022-04-05 10:15:00', 'Emily', 'Davis'],
+    [3, 'CyberHelper', '4', 4, 'Power outage interrupted production process', '2022-05-10 14:20:00', 'Jane', 'Smith'],
+    [2, 'MegaMech', '3', 5, 'Component failure resulted in production delay', '2022-06-25 11:00:00', 'John', 'Doe'],
+    [4, 'TurboBot', '2', 6, 'Robot arm malfunctioned, causing damage to equipment', '2022-07-12 16:30:00', 'karim', 'khoja'],
+    [1, 'RoboBot 2000', '6', 7, 'Communication failure with central control system', '2022-08-18 09:45:00', 'Emily', 'Davis'],
+    [3, 'CyberHelper', '4', 8, 'Sensor calibration error led to incorrect measurements', '2022-09-27 13:00:00', 'Jane', 'Smith'],
+    [2, 'MegaMech', '3', 9, 'Overheating issue caused temporary shutdown', '2022-10-30 10:10:00', 'John', 'Doe'],
+    [4, 'TurboBot', '2', 10, 'Software update caused compatibility problems', '2022-11-22 15:20:00', 'karim', 'khoja']
   ],
-
   [
     ['MegaMech'],
     ['TurboBot']
+  ],
+
+  [
+    ['repairID'], ['repairStatus'], ['desc'], ['robotID'], ['repairedById']
+  ],
+  [
+    [1, 'Under Repair', 'This robot model is undergoing repair due to its defaulty patterns', 5, 7]
+  ],
+  [
+    [1, 'Thomas', 'Anderson', '2022-06-12 10:25:00', 4]
   ]
 ]
 
@@ -157,7 +159,7 @@ function startGame () {
 
 function getStory () {
   const nextQueryIndex = currentQueryIndex + 1
-  if (flag === true && nextQueryIndex < queries.length) {
+  if (flag === true && nextQueryIndex <= queries.length) {
     const nextQuery = queries[nextQueryIndex]
     storyline.textContent = 'Excellent! Next, ' + nextQuery
     hintCounter = 0
@@ -328,7 +330,16 @@ function executeQuery (query, index, queryWrapper) {
     const results = db.exec(query)
     if (results.length === 0) {
       displayMessage(queryWrapper, 'Command executed successfully.')
-      flag = false
+      if (currentQueryIndex === 0) {
+        const results2 = db.exec('SELECT name FROM pragma_table_info(\'Repair\') ORDER BY cid;')
+        if (validateResult(results2[0].values, currentQueryIndex)) {
+          flag = true
+          console.log('yes')
+        } else {
+          flag = false
+          console.log('no')
+        }
+      }
     } else {
       displayResults(queryWrapper, results[0])
       if (validateResult(results[0].values, currentQueryIndex)) {
@@ -344,7 +355,6 @@ function executeQuery (query, index, queryWrapper) {
   }
   scrollToBottom()
 }
-
 function displayError (queryWrapper, message) {
   const errorElement = document.createElement('p')
   errorElement.textContent = message
@@ -356,6 +366,8 @@ function displayError (queryWrapper, message) {
 function validateResult (resultValues, queryIndex) {
   const answerKey = answerKeys[queryIndex]
   if (!answerKey || resultValues.length !== answerKey.length) {
+    console.log(answerKey.length)
+    console.log(resultValues.length)
     return false
   }
 
@@ -363,7 +375,8 @@ function validateResult (resultValues, queryIndex) {
     for (let j = 0; j < resultValues[i].length; j++) {
       const expectedValue = answerKey[i][j]
       const actualValue = resultValues[i][j]
-
+      console.log(expectedValue)
+      console.log(actualValue)
       const parsedExpectedValue = isNaN(expectedValue) ? expectedValue : parseFloat(expectedValue)
       const parsedActualValue = isNaN(actualValue) ? actualValue : parseFloat(actualValue)
 
