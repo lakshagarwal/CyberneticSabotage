@@ -192,25 +192,37 @@ function updateProgressBar (change) {
 
 restartButton.addEventListener('click', restartGame)
 
+function validateForm () {
+  const x = document.forms['query-input']['query-input-box'].value
+  if (x === '') {
+    return false
+  }
+  return true
+}
+
 form.addEventListener('submit', function (event) {
   event.preventDefault()
-
-  const query = textarea.value
-  queryHistory.push(query)
-
   const queryWrapper = document.createElement('div')
-
   const queryParagraph = document.createElement('p')
-  queryParagraph.textContent = query
-  queryWrapper.appendChild(queryParagraph)
 
-  textarea.value = ''
-  scrollToBottom()
-
-  executeQuery(query, queryHistory.length - 1, queryWrapper)
-  getStory()
-  displayText.appendChild(queryWrapper)
-  scrollToBottom()
+  if (!validateForm()) {
+    queryParagraph.textContent = 'Empty Query Provided'
+    console.log('query Paragraph')
+    queryWrapper.appendChild(queryParagraph)
+    displayText.appendChild(queryWrapper)
+    scrollToBottom()
+  } else {
+    const query = textarea.value
+    queryHistory.push(query)
+    queryParagraph.textContent = query
+    queryWrapper.appendChild(queryParagraph)
+    textarea.value = ''
+    scrollToBottom()
+    executeQuery(query, queryHistory.length - 1, queryWrapper)
+    getStory()
+    displayText.appendChild(queryWrapper)
+    scrollToBottom()
+  }
 })
 
 function getHint () {
