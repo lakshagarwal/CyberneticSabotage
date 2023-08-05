@@ -20,8 +20,7 @@ let progress = 10
 let flag = false
 let hintCounter = 0
 let subArrayLength
-let soundEnabled = true; // Default sound enabled
-
+let soundEnabled = true
 
 const queries = [
   ' Hey Detective! The first task is to list all incidents from the \'Incident\' table.',
@@ -210,7 +209,7 @@ function setSoundOff () {
 }
 
 function setSoundOn () {
-  soundEnabled = true;
+  soundEnabled = true
   const modal = document.getElementById('sound-modal')
   modal.style.display = 'none'
 }
