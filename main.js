@@ -181,38 +181,38 @@ function updateTimer () {
   document.getElementById('timer').textContent = 'Time: ' + timeElapsed + 's'
 }
 
-function updateScore(change) {
-  score = score + change;
-  document.getElementById('score').textContent = 'Score: ' + score;
+function updateScore (change) {
+  score = score + change
+  document.getElementById('score').textContent = 'Score: ' + score
 
   if (change > 0 && soundEnabled) {
-    const correctSound = document.getElementById('correctSound');
-    correctSound.currentTime = 0;
-    correctSound.play();
+    const correctSound = document.getElementById('correct-sound')
+    correctSound.currentTime = 0
+    correctSound.play()
   }
 
   if (change < 0 && soundEnabled) {
-    const incorrectSound = document.getElementById('incorrectSound');
-    incorrectSound.currentTime = 0;
-    incorrectSound.play();
+    const incorrectSound = document.getElementById('incorrect-sound')
+    incorrectSound.currentTime = 0
+    incorrectSound.play()
   }
 }
 
-function toggleSound() {
-  const modal = document.getElementById('sound-modal');
-  modal.style.display = 'block';
+function toggleSound () {
+  const modal = document.getElementById('sound-modal')
+  modal.style.display = 'block'
 }
 
-function setSoundOff() {
-  soundEnabled = false;
-  const modal = document.getElementById('sound-modal');
-  modal.style.display = 'none';
+function setSoundOff () {
+  soundEnabled = false
+  const modal = document.getElementById('sound-modal')
+  modal.style.display = 'none'
 }
 
-function setSoundOn() {
+function setSoundOn () {
   soundEnabled = true;
-  const modal = document.getElementById('sound-modal');
-  modal.style.display = 'none';
+  const modal = document.getElementById('sound-modal')
+  modal.style.display = 'none'
 }
 
 function updateProgressBar (change) {
@@ -231,27 +231,27 @@ function validateForm () {
   return true
 }
 
-const settingsButton = document.getElementById('settings-button');
-settingsButton.addEventListener('click', toggleSound);
+const settingsButton = document.getElementById('settings-button')
+settingsButton.addEventListener('click', toggleSound)
 
-const soundOnButton = document.getElementById('sound-on-button');
-soundOnButton.addEventListener('click', setSoundOn);
+const soundOnButton = document.getElementById('sound-on-button')
+soundOnButton.addEventListener('click', setSoundOn)
 
-const soundOffButton = document.getElementById('sound-off-button');
-soundOffButton.addEventListener('click', setSoundOff);
+const soundOffButton = document.getElementById('sound-off-button')
+soundOffButton.addEventListener('click', setSoundOff)
 
-const soundModalClose = document.getElementsByClassName('close')[1];
+const soundModalClose = document.getElementsByClassName('close')[1]
 soundModalClose.addEventListener('click', function () {
-  const modal = document.getElementById('sound-modal');
-  modal.style.display = 'none';
-});
+  const modal = document.getElementById('sound-modal')
+  modal.style.display = 'none'
+})
 
 window.addEventListener('click', function (event) {
-  const modal = document.getElementById('sound-modal');
+  const modal = document.getElementById('sound-modal')
   if (event.target === modal) {
-    modal.style.display = 'none';
+    modal.style.display = 'none'
   }
-});
+})
 
 form.addEventListener('submit', function (event) {
   event.preventDefault()
