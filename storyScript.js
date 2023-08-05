@@ -4,10 +4,11 @@ const scenes = Array.from(document.querySelectorAll('.scene'))
 scenes[currentScene].classList.add('active')
 
 const sceneText = [
-  'You are a gifted programmer in a world corrupted by a Matrix-like system... Use the left and right arrow keys to navigate this world.',
-  'Your SQL skills will be used as your main weapon...',
-  'Each level of the game is a new challenge...',
-  ''
+  'The year is 2145. Cities shimmer with neon, and vast digital networks course through the veins of civilization. In this matrix-infused world, data is power, and power is everything. To embark on your journey, navigate with the left and right arrow keys.',
+  'You are an enigma—a prodigious programmer, known in hushed tones as the "Cipher". RoboTech Global, a global behemoth, is ensnared in a web of digital deception. Their databases hint at internal betrayal, external espionage, or perhaps... an AI evolving beyond its confines. They\'ve sent for you, the only one with the skills to decode the chaos.',
+  'Each database is a labyrinth, with secrets locked behind SQL challenges. Crack them, and your score soars. But be cautious: errors will deplete your score, and the deeper you go, the more intricate the queries become. While hints can light your way, they bear a cost. Use them wisely.',
+  'Yet, in this digital expanse, you\'re not isolated. Trinity, an advanced AI ally, stands by your side. Gleaming at the screen\'s corner, she\'s your beacon amidst the data storms, offering clues and guidance. But heed this: leaning on Trinity too much might drain your score faster than you anticipate.',
+  'The future of RoboTech Global, and perhaps the digital world at large, hinges on your prowess. Beyond each SQL challenge lies a fragment of the truth. Can you piece together the mystery, or will you be consumed by the endless streams of data? Dive in, Cipher, and let the digital hunt begin!'
 ]
 
 function typeText (sceneIndex) {
@@ -26,7 +27,7 @@ function typeText (sceneIndex) {
         document.getElementById('begin-button').disabled = false
       }
     }
-  }, 75)
+  }, 45)
 }
 
 document.getElementById('begin-button').addEventListener('click', beginGame)
