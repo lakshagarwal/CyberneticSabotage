@@ -21,6 +21,7 @@ let flag = false
 let hintCounter = 0
 let subArrayLength
 let soundEnabled = true
+let correctQueriesSolved = 0
 
 const queries = [
   ' Hey Detective! The first task is to list all incidents from the \'Incident\' table.',
@@ -139,6 +140,7 @@ function restartGame () {
   startTime = Date.now()
   score = 150
   progress = 10
+  correctQueriesSolved = 0
   updateTimer()
   updateScore(0)
   updateProgressBar(0)
@@ -163,6 +165,7 @@ function getStory () {
   if (flag === true && nextQueryIndex <= queries.length) {
     const nextQuery = queries[nextQueryIndex]
     storyline.textContent = 'Excellent! Next, ' + nextQuery
+    correctQueriesSolved++
     hintCounter = 0
     currentQueryIndex = nextQueryIndex
     updateScore(100)
@@ -183,6 +186,8 @@ function updateTimer () {
 function updateScore (change) {
   score = score + change
   document.getElementById('score').textContent = 'Score: ' + score
+
+  document.getElementById('correct-queries').textContent = 'Q: ' + correctQueriesSolved + ' / 12'
 
   if (change > 0 && soundEnabled) {
     const correctSound = document.getElementById('correct-sound')
@@ -398,10 +403,8 @@ function executeQuery (query, index, queryWrapper) {
         const results2 = db.exec('SELECT name FROM pragma_table_info(\'Repair\') ORDER BY cid;')
         if (validateResult(results2[0].values, currentQueryIndex)) {
           flag = true
-          console.log('yes')
         } else {
           flag = false
-          console.log('no')
         }
       }
     } else {
