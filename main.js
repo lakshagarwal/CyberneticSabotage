@@ -11,6 +11,7 @@ const okayButton = document.getElementById('okay')
 const hintContainer = document.getElementById('modal-content')
 const progressBar = document.getElementById('progress-bar')
 const progressText = document.getElementById('progress-text')
+const scoreText = document.getElementById('score')
 
 let queryHistory = []
 let currentQueryIndex = 0
@@ -163,17 +164,24 @@ function startGame () {
 function getStory () {
   const nextQueryIndex = currentQueryIndex + 1
   if (flag === true && nextQueryIndex <= queries.length) {
-    const nextQuery = queries[nextQueryIndex]
-    storyline.textContent = 'Excellent! Next, ' + nextQuery
-    correctQueriesSolved++
-    hintCounter = 0
-    currentQueryIndex = nextQueryIndex
-    updateScore(100)
-    updateProgressBar(8)
+    if (nextQueryIndex === queries.length) {
+      location.assign('endScreen.html?gameStatus=win')
+    } else {
+      const nextQuery = queries[nextQueryIndex]
+      storyline.textContent = 'Excellent! Next, ' + nextQuery
+      hintCounter = 0
+      currentQueryIndex = nextQueryIndex
+      updateScore(100)
+      updateProgressBar(8)
+      correctQueriesSolved++
+    }
   } else {
     const currentQuery = queries[currentQueryIndex]
     storyline.textContent = 'Oops! Please try again.' + currentQuery
     updateScore(-10)
+    if (score <= 0) {
+      location.assign('endScreen.html?gameStatus=lose')
+    }
   }
 }
 
@@ -185,7 +193,7 @@ function updateTimer () {
 
 function updateScore (change) {
   score = score + change
-  document.getElementById('score').textContent = 'Score: ' + score
+  scoreText.textContent = 'Score: ' + score
 
   document.getElementById('correct-queries').textContent = 'Q: ' + correctQueriesSolved + ' / 12'
 
@@ -433,8 +441,6 @@ function displayError (queryWrapper, message) {
 function validateResult (resultValues, queryIndex) {
   const answerKey = answerKeys[queryIndex]
   if (!answerKey || resultValues.length !== answerKey.length) {
-    console.log(answerKey.length)
-    console.log(resultValues.length)
     return false
   }
 
@@ -442,8 +448,6 @@ function validateResult (resultValues, queryIndex) {
     for (let j = 0; j < resultValues[i].length; j++) {
       const expectedValue = answerKey[i][j]
       const actualValue = resultValues[i][j]
-      console.log(expectedValue)
-      console.log(actualValue)
       const parsedExpectedValue = isNaN(expectedValue) ? expectedValue : parseFloat(expectedValue)
       const parsedActualValue = isNaN(actualValue) ? actualValue : parseFloat(actualValue)
 
@@ -452,7 +456,6 @@ function validateResult (resultValues, queryIndex) {
       }
     }
   }
-
   return true
 }
 
