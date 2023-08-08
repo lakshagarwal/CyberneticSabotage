@@ -436,9 +436,6 @@ function displayError (queryWrapper, message) {
 function validateResult (resultValues, queryIndex) {
   const answerKey = answerKeys[queryIndex]
   if (!answerKey || resultValues.length !== answerKey.length) {
-    // console.log(answerKey.length)
-    // console.log(resultValues.length)
-    console.log('one')
     return false
   }
 
@@ -446,11 +443,8 @@ function validateResult (resultValues, queryIndex) {
     for (let j = 0; j < resultValues[i].length; j++) {
       const expectedValue = answerKey[i][j]
       const actualValue = resultValues[i][j]
-      // console.log(expectedValue)
-      // console.log(actualValue)
       const parsedExpectedValue = isNaN(expectedValue) ? expectedValue : parseFloat(expectedValue)
       const parsedActualValue = isNaN(actualValue) ? actualValue : parseFloat(actualValue)
-      console.log('two')
 
       if (parsedActualValue !== parsedExpectedValue) {
         return false
