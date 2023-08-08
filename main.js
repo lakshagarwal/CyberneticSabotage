@@ -16,7 +16,7 @@ const scoreText = document.getElementById('score')
 let queryHistory = []
 let currentQueryIndex = 0
 let startTime = null
-let score = 10
+let score = 150
 let progress = 10
 let flag = false
 let hintCounter = 0
@@ -25,16 +25,16 @@ let soundEnabled = true
 
 const queries = [
   ' Hey Detective! The first task is to list all incidents from the \'Incident\' table.',
-  // ' Find the most recent incident involving these models.',
-  // ' Find out how many incidents exist in the company for these robot models.',
-  // ' Find out how many of these robots have been updated in the past one week. The column name here should be NumberOfUpdatedRobots',
-  // ' Find out which all employees have updated these robots recently.',
-  // ' Mark the most recently updated robots as "under repair" in the database and display the robot table.',
-  // ' Identify the employee who reported the highest number of incidents.',
-  // ' Create a view that joins the \'Incident\' and \'Robot\' table to see all incidents associated with each robot model. Display the view.',
-  // ' Identify the source of the malfunctions by finding models of robots that have more than 2 incidents.',
-  // ' Create a new table called \'Repair\'  with columns repairID (INTEGER), repairStatus(TEXT), desc (TEXT), robotID (TEXT) and repairedById (TEXT)',
-  // ' Insert repair records for the table in this row form :(1, \'Under Repair\', \'This robot model is undergoing repair due to its defaulty patterns\', 5 , 7).',
+  ' Find the most recent incident involving these models.',
+  ' Find out how many incidents exist in the company for these robot models.',
+  ' Find out how many of these robots have been updated in the past one week. The column name here should be NumberOfUpdatedRobots',
+  ' Find out which all employees have updated these robots recently.',
+  ' Mark the most recently updated robots as "under repair" in the database and display the robot table.',
+  ' Identify the employee who reported the highest number of incidents.',
+  ' Create a view that joins the \'Incident\' and \'Robot\' table to see all incidents associated with each robot model. Display the view.',
+  ' Identify the source of the malfunctions by finding models of robots that have more than 2 incidents.',
+  ' Create a new table called \'Repair\'  with columns repairID (INTEGER), repairStatus(TEXT), desc (TEXT), robotID (TEXT) and repairedById (TEXT)',
+  ' Insert repair records for the table in this row form :(1, \'Under Repair\', \'This robot model is undergoing repair due to its defaulty patterns\', 5 , 7).',
   ' Find the last employee who updated the software of the malfunctioning robots.'
 ]
 storyline.textContent = queries[0]
@@ -152,7 +152,7 @@ function restartGame () {
 
 function startGame () {
   startTime = Date.now()
-  score = 10
+  score = 150
   progress = 10
   setInterval(updateTimer, 1000)
   initializeDB()
