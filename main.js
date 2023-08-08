@@ -22,6 +22,7 @@ let flag = false
 let hintCounter = 0
 let subArrayLength
 let soundEnabled = true
+let correctQueriesSolved = 0
 
 const queries = [
   ' Hey Detective! The first task is to list all incidents from the \'Incident\' table.',
@@ -140,6 +141,7 @@ function restartGame () {
   startTime = Date.now()
   score = 150
   progress = 10
+  correctQueriesSolved = 0
   updateTimer()
   updateScore(0)
   updateProgressBar(0)
@@ -171,6 +173,7 @@ function getStory () {
       currentQueryIndex = nextQueryIndex
       updateScore(100)
       updateProgressBar(8)
+      correctQueriesSolved++
     }
   } else {
     const currentQuery = queries[currentQueryIndex]
@@ -191,6 +194,8 @@ function updateTimer () {
 function updateScore (change) {
   score = score + change
   scoreText.textContent = 'Score: ' + score
+
+  document.getElementById('correct-queries').textContent = 'Q: ' + correctQueriesSolved + ' / 12'
 
   if (change > 0 && soundEnabled) {
     const correctSound = document.getElementById('correct-sound')
