@@ -185,7 +185,8 @@ button {
 }
 
 #timer,
-#score {
+#score,
+#correct-queries {
   color: var(--main-color);
   font-size: 20px;
   padding: 10px;
