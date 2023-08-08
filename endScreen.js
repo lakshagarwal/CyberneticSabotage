@@ -1,11 +1,10 @@
 const startPageButton = document.getElementById('start-page')
 const restartEndButton = document.getElementById('restart-gameover')
-const headerText = document.getElementById('mainText')
+const headerText = document.getElementById('main-text')
 
 startPageButton.addEventListener('click', goToMain)
 restartEndButton.addEventListener('click', restart)
 
-// window.location.href
 const searchParams = new URLSearchParams(window.location.search)
 const gameStatus = searchParams.get('gameStatus')
 
