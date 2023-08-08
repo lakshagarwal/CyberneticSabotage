@@ -162,6 +162,10 @@ button {
   padding: 8px;
 }
 
+#mainText {
+  white-space: pre-wrap;
+}
+
 .side-panel button:hover {
   background-color: #1a1a1a;
 }

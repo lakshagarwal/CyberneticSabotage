@@ -11,11 +11,12 @@ const okayButton = document.getElementById('okay')
 const hintContainer = document.getElementById('modal-content')
 const progressBar = document.getElementById('progress-bar')
 const progressText = document.getElementById('progress-text')
+const scoreText = document.getElementById('score')
 
 let queryHistory = []
 let currentQueryIndex = 0
 let startTime = null
-let score = 150
+let score = 10
 let progress = 10
 let flag = false
 let hintCounter = 0
@@ -24,16 +25,16 @@ let soundEnabled = true
 
 const queries = [
   ' Hey Detective! The first task is to list all incidents from the \'Incident\' table.',
-  ' Find the most recent incident involving these models.',
-  ' Find out how many incidents exist in the company for these robot models.',
-  ' Find out how many of these robots have been updated in the past one week. The column name here should be NumberOfUpdatedRobots',
-  ' Find out which all employees have updated these robots recently.',
-  ' Mark the most recently updated robots as "under repair" in the database and display the robot table.',
-  ' Identify the employee who reported the highest number of incidents.',
-  ' Create a view that joins the \'Incident\' and \'Robot\' table to see all incidents associated with each robot model. Display the view.',
-  ' Identify the source of the malfunctions by finding models of robots that have more than 2 incidents.',
-  ' Create a new table called \'Repair\'  with columns repairID (INTEGER), repairStatus(TEXT), desc (TEXT), robotID (TEXT) and repairedById (TEXT)',
-  ' Insert repair records for the table in this row form :(1, \'Under Repair\', \'This robot model is undergoing repair due to its defaulty patterns\', 5 , 7).',
+  // ' Find the most recent incident involving these models.',
+  // ' Find out how many incidents exist in the company for these robot models.',
+  // ' Find out how many of these robots have been updated in the past one week. The column name here should be NumberOfUpdatedRobots',
+  // ' Find out which all employees have updated these robots recently.',
+  // ' Mark the most recently updated robots as "under repair" in the database and display the robot table.',
+  // ' Identify the employee who reported the highest number of incidents.',
+  // ' Create a view that joins the \'Incident\' and \'Robot\' table to see all incidents associated with each robot model. Display the view.',
+  // ' Identify the source of the malfunctions by finding models of robots that have more than 2 incidents.',
+  // ' Create a new table called \'Repair\'  with columns repairID (INTEGER), repairStatus(TEXT), desc (TEXT), robotID (TEXT) and repairedById (TEXT)',
+  // ' Insert repair records for the table in this row form :(1, \'Under Repair\', \'This robot model is undergoing repair due to its defaulty patterns\', 5 , 7).',
   ' Find the last employee who updated the software of the malfunctioning robots.'
 ]
 storyline.textContent = queries[0]
@@ -151,7 +152,7 @@ function restartGame () {
 
 function startGame () {
   startTime = Date.now()
-  score = 150
+  score = 10
   progress = 10
   setInterval(updateTimer, 1000)
   initializeDB()
@@ -161,16 +162,23 @@ function startGame () {
 function getStory () {
   const nextQueryIndex = currentQueryIndex + 1
   if (flag === true && nextQueryIndex <= queries.length) {
-    const nextQuery = queries[nextQueryIndex]
-    storyline.textContent = 'Excellent! Next, ' + nextQuery
-    hintCounter = 0
-    currentQueryIndex = nextQueryIndex
-    updateScore(100)
-    updateProgressBar(8)
+    if (nextQueryIndex === queries.length) {
+      location.assign('endScreen.html?gameStatus=win')
+    } else {
+      const nextQuery = queries[nextQueryIndex]
+      storyline.textContent = 'Excellent! Next, ' + nextQuery
+      hintCounter = 0
+      currentQueryIndex = nextQueryIndex
+      updateScore(100)
+      updateProgressBar(8)
+    }
   } else {
     const currentQuery = queries[currentQueryIndex]
     storyline.textContent = 'Oops! Please try again.' + currentQuery
     updateScore(-10)
+    if (score <= 0) {
+      location.assign('endScreen.html?gameStatus=lose')
+    }
   }
 }
 
@@ -182,7 +190,7 @@ function updateTimer () {
 
 function updateScore (change) {
   score = score + change
-  document.getElementById('score').textContent = 'Score: ' + score
+  scoreText.textContent = 'Score: ' + score
 
   if (change > 0 && soundEnabled) {
     const correctSound = document.getElementById('correct-sound')
@@ -398,10 +406,8 @@ function executeQuery (query, index, queryWrapper) {
         const results2 = db.exec('SELECT name FROM pragma_table_info(\'Repair\') ORDER BY cid;')
         if (validateResult(results2[0].values, currentQueryIndex)) {
           flag = true
-          console.log('yes')
         } else {
           flag = false
-          console.log('no')
         }
       }
     } else {
@@ -430,8 +436,9 @@ function displayError (queryWrapper, message) {
 function validateResult (resultValues, queryIndex) {
   const answerKey = answerKeys[queryIndex]
   if (!answerKey || resultValues.length !== answerKey.length) {
-    console.log(answerKey.length)
-    console.log(resultValues.length)
+    // console.log(answerKey.length)
+    // console.log(resultValues.length)
+    console.log('one')
     return false
   }
 
@@ -439,17 +446,17 @@ function validateResult (resultValues, queryIndex) {
     for (let j = 0; j < resultValues[i].length; j++) {
       const expectedValue = answerKey[i][j]
       const actualValue = resultValues[i][j]
-      console.log(expectedValue)
-      console.log(actualValue)
+      // console.log(expectedValue)
+      // console.log(actualValue)
       const parsedExpectedValue = isNaN(expectedValue) ? expectedValue : parseFloat(expectedValue)
       const parsedActualValue = isNaN(actualValue) ? actualValue : parseFloat(actualValue)
+      console.log('two')
 
       if (parsedActualValue !== parsedExpectedValue) {
         return false
       }
     }
   }
-
   return true
 }
 
